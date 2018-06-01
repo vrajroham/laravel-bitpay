@@ -1,7 +1,7 @@
 # Laravel + BitPay Integration
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/vrajroham/laravel-bitpay)
-[![Build Status](https://img.shields.io/travis/spatie/:package_name/master.svg?style=flat-square)](https://travis-ci.org/vrajroham/laravel-bitpay)
+[![Build Status](https://travis-ci.org/vrajroham/laravel-bitpay.svg?branch=master)](https://travis-ci.org/vrajroham/laravel-bitpay)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/vrajroham/laravel-bitpay)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 
