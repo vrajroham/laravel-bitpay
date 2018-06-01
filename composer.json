@@ -51,5 +51,6 @@
                 "Skeleton": "Vrajroham\\LaravelBitpay\\LaravelBitpayFacade"
             }
         }
-    }
+    },
+    "minimum-stability":"dev"
 }
