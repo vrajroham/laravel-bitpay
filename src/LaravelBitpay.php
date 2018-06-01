@@ -101,16 +101,6 @@ class LaravelBitpay
     }
 
     /**
-     * @param null $id
-     *
-     * @return \Bitpay\Key
-     */
-    public static function Key($id = null): Key
-    {
-        return new Key($id);
-    }
-
-    /**
      * @return \Bitpay\Payout
      */
     public static function Payout(): Payout
