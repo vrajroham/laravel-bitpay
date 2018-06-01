@@ -10,7 +10,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Vaibhavraj ROham",
+            "name": "Vaibhavraj Roham",
             "email": "vaibhavraj@vrajroham.me",
             "homepage": "https://vrajroham.me",
             "role": "Developer"
@@ -37,7 +37,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
@@ -48,7 +47,7 @@
                 "Vrajroham\\LaravelBitpay\\LaravelBitpayServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Vrajroham\\LaravelBitpay\\LaravelBitpayFacade"
+                "LaravelBitpay": "Vrajroham\\LaravelBitpay\\LaravelBitpayFacade"
             }
         }
     },
