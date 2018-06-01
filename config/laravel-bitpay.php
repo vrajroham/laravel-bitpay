@@ -34,12 +34,6 @@ return [
     'key_storage_password' => env('BITPAY_KEY_STORAGE_PASSWORD', 'RandomPasswordForEncryption'),
 
     /*
-     * Pairing code
-     */
-    'pairing_code' => env('BITPAY_PAIRING_CODE', ''),
-    'pairing_code_label' => env('BITPAY_PAIRING_CODE_LABEL', 'laravel-bitpay'),
-
-    /*
      * BitPay Token
      */
     'token' => env('BITPAY_TOKEN', ''),
