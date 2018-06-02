@@ -40,8 +40,9 @@ BITPAY_TOKEN=
     ```bash
     php artisan laravel-bitpay:createkeypair yourPairingCode
     ```
-    <p align="center"><a href="#"><img src="https://preview.ibb.co/hf5tay/laravel_bitpay_1.png" alt="laravel_bitpay_1" border="0"></a></p>
+    <p align="center"><a href="https://preview.ibb.co/hf5tay/laravel_bitpay_1.png"><img src="https://preview.ibb.co/hf5tay/laravel_bitpay_1.png" alt="laravel_bitpay_1" border="0"></a></p>
     Above command will **generate private key, public key** and save to your specified location. Next it will pair your client i.e. application with BitPay server referring your provided **pairing code** and create new token/key and will be saved in `.env`.
+
 - Done. :golf:
 
 ## Usage
@@ -84,7 +85,8 @@ $invoice = LaravelBitpay::createInvoice($invoice);
 // Redirect user to following url for payment approval. or you can create stripe like checkout from https://bitpay.com/create-checkout
 $paymentUrl = $invoice->getUrl();
 ```
- <p align="center"><a href="#"><img src="https://preview.ibb.co/hf5tay/laravel_bitpay_2.png" alt="laravel_bitpay_2" border="0"></a></p>
+
+ <p align="center"><a href="https://preview.ibb.co/jxMzFy/laravel_bitpay_2.png"><img src="https://image.ibb.co/jxMzFy/laravel_bitpay_2.png" alt="laravel_bitpay_2" border="0"></a></p>
 
 ### Testing
 
