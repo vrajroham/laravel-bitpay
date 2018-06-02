@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayInvoiceTest extends TestCase
 {
     /** @test */
-    function isInstanceOfInvoice()
+    public function isInstanceOfInvoice()
     {
-        $this->assertEquals(LaravelBitpay::Invoice() instanceof Invoice,true);
+        $this->assertEquals(LaravelBitpay::Invoice() instanceof Invoice, true);
     }
 }

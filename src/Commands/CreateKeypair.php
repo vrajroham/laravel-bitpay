@@ -3,16 +3,15 @@
 namespace Vrajroham\LaravelBitpay\Commands;
 
 use Bitpay\Bitpay;
-use Bitpay\Client\Adapter\CurlAdapter;
-use Bitpay\Client\BitpayException;
-use Bitpay\Client\Client as BitpayClient;
+use Bitpay\SinKey;
+use Bitpay\PublicKey;
+use Bitpay\PrivateKey;
 use Bitpay\Network\Livenet;
 use Bitpay\Network\Testnet;
-use Bitpay\PrivateKey;
-use Bitpay\PublicKey;
-use Bitpay\SinKey;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Console\KeyGenerateCommand;
+use Bitpay\Client\BitpayException;
+use Bitpay\Client\Adapter\CurlAdapter;
+use Bitpay\Client\Client as BitpayClient;
 use Vrajroham\LaravelBitpay\Traits\CreateKeypairTrait;
 
 class CreateKeypair extends Command
@@ -93,7 +92,6 @@ class CreateKeypair extends Command
 
         $this->bar->advance();
         $this->info(' - Generating public key.');
-
 
         $this->publicKey = new PublicKey($this->config['public_key']);
         $this->publicKey->setPrivateKey($this->privateKey);

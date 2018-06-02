@@ -18,21 +18,21 @@ class InvalidConfigurationException extends Exception
 
     public static function invalidOrEmptyPassword()
     {
-        return new static("Password missing in config. Password is required to encrypt and decrypt keys on the filesystem.");
+        return new static('Password missing in config. Password is required to encrypt and decrypt keys on the filesystem.');
     }
 
     public static function invalidOrEmptyPairingCode()
     {
-        return new static("Invalid or empty pairing code. To create new visit merchant dashboard on bitpay.");
+        return new static('Invalid or empty pairing code. To create new visit merchant dashboard on bitpay.');
     }
 
     public static function invalidOrEmptyPairingCodeLabel()
     {
-        return new static("Invalid or empty pairing code label.");
+        return new static('Invalid or empty pairing code label.');
     }
 
     public static function emptyToken()
     {
-        return new static("BitPay token is empty. Set token in `bitpay-config` file.");
+        return new static('BitPay token is empty. Set token in `bitpay-config` file.');
     }
 }

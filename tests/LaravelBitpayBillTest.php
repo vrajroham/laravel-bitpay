@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayBillTest extends TestCase
 {
     /** @test */
-    function isInstanceOfBill()
+    public function isInstanceOfBill()
     {
-        $this->assertEquals(LaravelBitpay::Bill() instanceof Bill,true);
+        $this->assertEquals(LaravelBitpay::Bill() instanceof Bill, true);
     }
 }

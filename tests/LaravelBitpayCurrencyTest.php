@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayCurrencyTest extends TestCase
 {
     /** @test */
-    function isInstanceOfCurrency()
+    public function isInstanceOfCurrency()
     {
-        $this->assertEquals(LaravelBitpay::Currency() instanceof Currency,true);
+        $this->assertEquals(LaravelBitpay::Currency() instanceof Currency, true);
     }
 }

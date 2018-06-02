@@ -14,7 +14,7 @@ trait CreateKeypairTrait
             throw InvalidConfigurationException::invalidNetworkName();
         }
 
-        if (!class_exists($config['key_storage'])) {
+        if (! class_exists($config['key_storage'])) {
             throw InvalidConfigurationException::invalidStorageClass();
         }
 
