@@ -19,7 +19,7 @@ trait CreateKeypairTrait
         }
 
         if ('' === trim($config['key_storage_password'])) {
-            throw InvalidConfigurationException::invaildOrEmptyPassword();
+            throw InvalidConfigurationException::invalidOrEmptyPassword();
         }
 
         $this->config = $config;
