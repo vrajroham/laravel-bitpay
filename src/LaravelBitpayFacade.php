@@ -5,9 +5,7 @@ namespace Vrajroham\LaravelBitpay;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class LaravelBitpayFacade
- *
- * @package Vrajroham\LaravelBitpay
+ * Class LaravelBitpayFacade.
  */
 class LaravelBitpayFacade extends Facade
 {

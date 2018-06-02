@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayItemTest extends TestCase
 {
     /** @test */
-    function isInstanceOfItem()
+    public function isInstanceOfItem()
     {
-        $this->assertEquals(LaravelBitpay::Item() instanceof Item,true);
+        $this->assertEquals(LaravelBitpay::Item() instanceof Item, true);
     }
 }

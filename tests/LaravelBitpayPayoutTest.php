@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayPayoutTest extends TestCase
 {
     /** @test */
-    function isInstanceOfPayout()
+    public function isInstanceOfPayout()
     {
-        $this->assertEquals(LaravelBitpay::Payout() instanceof Payout,true);
+        $this->assertEquals(LaravelBitpay::Payout() instanceof Payout, true);
     }
 }

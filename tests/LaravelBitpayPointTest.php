@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayPointTest extends TestCase
 {
     /** @test */
-    function isInstanceOfPoint()
+    public function isInstanceOfPoint()
     {
-        $this->assertEquals(LaravelBitpay::Point(1,2) instanceof Point,true);
+        $this->assertEquals(LaravelBitpay::Point(1, 2) instanceof Point, true);
     }
 }

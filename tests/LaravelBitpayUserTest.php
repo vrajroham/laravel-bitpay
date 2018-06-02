@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayUserTest extends TestCase
 {
     /** @test */
-    function isInstanceOfUser()
+    public function isInstanceOfUser()
     {
-        $this->assertEquals(LaravelBitpay::User() instanceof User,true);
+        $this->assertEquals(LaravelBitpay::User() instanceof User, true);
     }
 }

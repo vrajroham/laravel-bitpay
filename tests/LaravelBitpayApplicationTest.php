@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayApplicationTest extends TestCase
 {
     /** @test */
-    function isInstanceOfApplication()
+    public function isInstanceOfApplication()
     {
-        $this->assertEquals(LaravelBitpay::Application() instanceof Application,true);
+        $this->assertEquals(LaravelBitpay::Application() instanceof Application, true);
     }
 }

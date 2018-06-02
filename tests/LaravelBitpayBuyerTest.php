@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayBuyerTest extends TestCase
 {
     /** @test */
-    function isInstanceOfBuyer()
+    public function isInstanceOfBuyer()
     {
-        $this->assertEquals(LaravelBitpay::Buyer() instanceof Buyer,true);
+        $this->assertEquals(LaravelBitpay::Buyer() instanceof Buyer, true);
     }
 }

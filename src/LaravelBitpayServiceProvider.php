@@ -2,8 +2,8 @@
 
 namespace Vrajroham\LaravelBitpay;
 
-use Vrajroham\LaravelBitpay\Commands\CreateKeypair;
 use Illuminate\Support\ServiceProvider;
+use Vrajroham\LaravelBitpay\Commands\CreateKeypair;
 
 class LaravelBitpayServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,7 @@ class LaravelBitpayServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/laravel-bitpay.php', 'laravel-bitpay');
         $this->app->bind('command.laravel-bitpay:createkeypair', CreateKeypair::class);
         $this->commands([
-            'command.laravel-bitpay:createkeypair'
+            'command.laravel-bitpay:createkeypair',
         ]);
     }
 }

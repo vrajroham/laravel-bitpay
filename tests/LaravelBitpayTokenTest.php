@@ -9,8 +9,8 @@ use Vrajroham\LaravelBitpay\LaravelBitpay;
 class LaravelBitpayTokenTest extends TestCase
 {
     /** @test */
-    function isInstanceOfToken()
+    public function isInstanceOfToken()
     {
-        $this->assertEquals(LaravelBitpay::Token() instanceof Token,true);
+        $this->assertEquals(LaravelBitpay::Token() instanceof Token, true);
     }
 }

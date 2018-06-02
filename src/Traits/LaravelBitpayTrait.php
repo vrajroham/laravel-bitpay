@@ -2,11 +2,11 @@
 
 namespace Vrajroham\LaravelBitpay\Traits;
 
-use Bitpay\Client\Adapter\CurlAdapter;
-use Bitpay\Client\Client as BitpayClient;
+use Bitpay\Token;
 use Bitpay\Network\Livenet;
 use Bitpay\Network\Testnet;
-use Bitpay\Token;
+use Bitpay\Client\Adapter\CurlAdapter;
+use Bitpay\Client\Client as BitpayClient;
 use Vrajroham\LaravelBitpay\Exceptions\InvalidConfigurationException;
 
 trait LaravelBitpayTrait
@@ -54,7 +54,7 @@ trait LaravelBitpayTrait
             throw InvalidConfigurationException::invalidNetworkName();
         }
 
-        if (!class_exists($config['key_storage'])) {
+        if (! class_exists($config['key_storage'])) {
             throw InvalidConfigurationException::invalidStorageClass();
         }
 

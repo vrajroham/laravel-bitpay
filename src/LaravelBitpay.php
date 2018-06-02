@@ -2,20 +2,19 @@
 
 namespace Vrajroham\LaravelBitpay;
 
-use Bitpay\AccessToken;
-use Bitpay\Application;
 use Bitpay\Bill;
-use Bitpay\Buyer;
-use Bitpay\Currency;
-use Bitpay\Invoice;
 use Bitpay\Item;
-use Bitpay\Key;
-use Bitpay\Payout;
-use Bitpay\PayoutInstruction;
-use Bitpay\PayoutTransaction;
+use Bitpay\User;
+use Bitpay\Buyer;
 use Bitpay\Point;
 use Bitpay\Token;
-use Bitpay\User;
+use Bitpay\Payout;
+use Bitpay\Invoice;
+use Bitpay\Currency;
+use Bitpay\AccessToken;
+use Bitpay\Application;
+use Bitpay\PayoutInstruction;
+use Bitpay\PayoutTransaction;
 use Vrajroham\LaravelBitpay\Traits\LaravelBitpayTrait;
 
 class LaravelBitpay
@@ -132,7 +131,7 @@ class LaravelBitpay
      */
     public static function Point($x, $y): Point
     {
-        return new Point($x,$y);
+        return new Point($x, $y);
     }
 
     /**
