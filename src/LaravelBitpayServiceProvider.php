@@ -16,14 +16,6 @@ class LaravelBitpayServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/laravel-bitpay.php' => config_path('laravel-bitpay.php'),
             ], 'config');
-
-            /*
-            $this->loadViewsFrom(__DIR__.'/../resources/views', 'skeleton');
-
-            $this->publishes([
-                __DIR__.'/../resources/views' => base_path('resources/views/vendor/skeleton'),
-            ], 'views');
-            */
         }
     }
 

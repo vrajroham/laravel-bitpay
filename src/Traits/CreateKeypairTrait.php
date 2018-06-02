@@ -10,7 +10,7 @@ trait CreateKeypairTrait
     {
         $config = config('laravel-bitpay');
 
-        if ('livenet' != $config['network'] and 'testnet' != $config['network']) {
+        if ('livenet' != $config['network'] && 'testnet' != $config['network']) {
             throw InvalidConfigurationException::invalidNetworkName();
         }
 

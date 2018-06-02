@@ -50,7 +50,7 @@ trait LaravelBitpayTrait
     {
         $config = config('laravel-bitpay');
 
-        if ('livenet' != $config['network'] and 'testnet' != $config['network']) {
+        if ('livenet' != $config['network'] && 'testnet' != $config['network']) {
             throw InvalidConfigurationException::invalidNetworkName();
         }
 
@@ -59,7 +59,7 @@ trait LaravelBitpayTrait
         }
 
         if ('' === trim($config['key_storage_password'])) {
-            throw InvalidConfigurationException::invaidOrEmptyPassword();
+            throw InvalidConfigurationException::invalidOrEmptyPassword();
         }
 
         if ('' === trim($config['token'])) {

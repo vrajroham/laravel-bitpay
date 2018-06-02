@@ -63,7 +63,8 @@ class CreateKeypair extends Command
         $this->bar->setProgressCharacter('⚡');
         $this->bar->setBarCharacter('-');
         $this->bar->setEmptyBarCharacter(' ');
-        $config = $this->validateAndLoadConfig();
+
+        $this->validateAndLoadConfig();
 
         $this->createAndPersistKeypair();
 

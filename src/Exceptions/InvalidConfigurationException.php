@@ -16,7 +16,7 @@ class InvalidConfigurationException extends Exception
         return new static('Invalid key storage class provided in config.');
     }
 
-    public static function invaildOrEmptyPassword()
+    public static function invalidOrEmptyPassword()
     {
         return new static("Password missing in config. Password is required to encrypt and decrypt keys on the filesystem.");
     }
