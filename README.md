@@ -41,7 +41,7 @@ BITPAY_TOKEN=
     php artisan laravel-bitpay:createkeypair yourPairingCode
     ```
     <p align="center"><a href="https://preview.ibb.co/hf5tay/laravel_bitpay_1.png"><img src="https://preview.ibb.co/hf5tay/laravel_bitpay_1.png" alt="laravel_bitpay_1" border="0"></a></p>
-    Above command will **generate private key, public key** and save to your specified location. Next it will pair your client i.e. application with BitPay server referring your provided **pairing code** and create new token/key and will be saved in `.env`.
+Above command will **generate private key, public key** and save to your specified location. Next it will pair your client i.e. application with BitPay server referring your provided **pairing code** and create new token/key and will be saved in `.env`.
 
 - Done. :golf:
 
