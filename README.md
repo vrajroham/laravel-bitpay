@@ -20,7 +20,7 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
 ```
 ## Steps to configure and pair with BitPay Server
 
-- Add following keys to `.env` file and updated the details:
+- Add following keys to `.env` file and updated the details ([view more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
 
     ```dotenv
     BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
@@ -32,7 +32,7 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
 
 - Create [Test Account](http://test.bitpay.com/)(for devlopement) or [Live Account](http://bitpay.com/) on BitPay.
 
-- Create [new token for application](https://test.bitpay.com/dashboard/merchant/api-tokens)(test account) or [new token for application](https://bitpay.com/dashboard/merchant/api-tokens) on BitPay and **copy newly generated Pairing Code**.
+- Create [new token for application](https://test.bitpay.com/dashboard/merchant/api-tokens)(test account) or [new token for application](https://bitpay.com/dashboard/merchant/api-tokens) on BitPay and **copy newly generated 7 character Pairing Code**.
 
 - Create keypairs and pair your client(application) with BitPay server.
 
@@ -46,8 +46,7 @@ Above command will **generate private key, public key** and save to your specifi
 
 ## Usage
 
-- Create Invoice
-
+##### Create Invoice and checkout
 ``` php
 public function createInvoice()
 {
@@ -92,6 +91,8 @@ public function createInvoice()
 ```
 
  <p align="center"><a href="https://preview.ibb.co/jxMzFy/laravel_bitpay_2.png"><img src="https://image.ibb.co/jxMzFy/laravel_bitpay_2.png" alt="laravel_bitpay_2" border="0"></a></p>
+
+----
 
 ### Testing
 
