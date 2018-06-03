@@ -49,41 +49,46 @@ BITPAY_TOKEN=
 
 - Create Invoice
 ``` php
-// Create instance on invoice
-$invoice = LaravelBitpay::Invoice();
+public function createInvoice()
+{
+    // Create instance on invoice
+    $invoice = LaravelBitpay::Invoice();
 
-// Create instance of item
-$item = LaravelBitpay::Item();
+    // Create instance of item
+    $item = LaravelBitpay::Item();
 
-// Set item details
-$item->setCode('124')
-    ->setDescription('Item 1')
-    ->setPrice('1.99');
+    // Set item details
+    $item->setCode('124')
+        ->setDescription('Item 1')
+        ->setPrice('1.99');
 
-// Add item to invoice. (Only one item can be added)
-$invoice->setItem($item);
+    // Add item to invoice. (Only one item can be added)
+    $invoice->setItem($item);
 
-// Order reference number from the point-of-sale (POS). It should be a unique identifer for each order that you submit. 
-$invoice->setPosData(uniqid()); // Optional
+    // Order reference number from the point-of-sale (POS). 
+    // It should be a unique identifer for each order that you submit. 
+    $invoice->setPosData(uniqid()); // Optional
 
-// Create buyer instance
-$buyer = LaravelBitpay::Buyer();
+    // Create buyer instance
+    $buyer = LaravelBitpay::Buyer();
 
-// Add buyer details
-$buyer->setFirstName('Vaibhav')
-    ->setLastName('Roham');
+    // Add buyer details
+    $buyer->setFirstName('Vaibhav')
+        ->setLastName('Roham');
 
-// Add buyer to invocie
-$invoice->setBuyer($buyer);
+    // Add buyer to invocie
+    $invoice->setBuyer($buyer);
 
-// Set currency for this invoice
-$invoice->setCurrency(LaravelBitpay::Currency('USD'));
+    // Set currency for this invoice
+    $invoice->setCurrency(LaravelBitpay::Currency('USD'));
 
-// Create invoice on BitPay server
-$invoice = LaravelBitpay::createInvoice($invoice);
+    // Create invoice on BitPay server
+    $invoice = LaravelBitpay::createInvoice($invoice);
 
-// Redirect user to following url for payment approval. or you can create stripe like checkout from https://bitpay.com/create-checkout
-$paymentUrl = $invoice->getUrl();
+    // Redirect user to following url for payment approval. 
+    // Or you can create stripe like checkout from https://bitpay.com/create-checkout
+    $paymentUrl = $invoice->getUrl();
+}
 ```
 
  <p align="center"><a href="https://preview.ibb.co/jxMzFy/laravel_bitpay_2.png"><img src="https://image.ibb.co/jxMzFy/laravel_bitpay_2.png" alt="laravel_bitpay_2" border="0"></a></p>
