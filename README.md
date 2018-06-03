@@ -1,9 +1,9 @@
 # Laravel + BitPay Integration
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/vrajroham/laravel-bitpay)
-[![Build Status](https://travis-ci.org/vrajroham/laravel-bitpay.svg?branch=master)](https://travis-ci.org/vrajroham/laravel-bitpay)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/vrajroham/laravel-bitpay)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/vrajroham/laravel-bitpay)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
+[![Build Status](https://img.shields.io/travis/vrajroham/laravel-bitpay/master.svg?style=for-the-badge)](https://travis-ci.org/vrajroham/laravel-bitpay)
+[![Quality Score](https://img.shields.io/scrutinizer/g/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://scrutinizer-ci.com/g/vrajroham/laravel-bitpay)
+[![Total Downloads](https://img.shields.io/packagist/dt/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 
 Accept Bitcoin payments via. [BitPay](https://bitpay.com) on your Laravel application securely using BitPay client.
 
@@ -21,9 +21,9 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
 ```
 ## Steps to configure and pair with BitPay Server
 
-- Add following to `.env` file and updated the details:
+- Add following keys to `.env` file and updated the details:
 
-    ```env
+    ```dotenv
     BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
     BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
     BITPAY_NETWORK=testnet
