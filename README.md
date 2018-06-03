@@ -85,6 +85,9 @@ public function createInvoice()
     // Create invoice on BitPay server
     $invoice = LaravelBitpay::createInvoice($invoice);
 
+    // Redirect URL on success
+    $invoice->setRedirectUrl(route('bitpay-redirect-back'));
+
     // Redirect user to following URL for payment approval. 
     // Or you can create stripe like checkout from https://bitpay.com/create-checkout
     $paymentUrl = $invoice->getUrl();
