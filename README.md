@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/vrajroham/laravel-bitpay)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 
-Accept bitcoin payments via. [BitPay](https://bitpay.com) on your Laravel application securly using BitPay client.
+Accept Bitcoin payments via. [BitPay](https://bitpay.com) on your Laravel application securely using BitPay client.
 
 ## Installation
 
@@ -23,13 +23,13 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
 
 - Add following to `.env` file and updated the details:
 
-```dotenv
-BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
-BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
-BITPAY_NETWORK=testnet
-BITPAY_KEY_STORAGE_PASSWORD=SomeRandomePasswordForKeypairEncryption
-BITPAY_TOKEN=
-``` 
+    ```env
+    BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
+    BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
+    BITPAY_NETWORK=testnet
+    BITPAY_KEY_STORAGE_PASSWORD=SomeRandomePasswordForKeypairEncryption
+    BITPAY_TOKEN=
+    ``` 
 
 - Create [Test Account](http://test.bitpay.com/)(for devlopement) or [Live Account](http://bitpay.com/) on BitPay.
 
@@ -48,10 +48,11 @@ Above command will **generate private key, public key** and save to your specifi
 ## Usage
 
 - Create Invoice
+
 ``` php
 public function createInvoice()
 {
-    // Create instance on invoice
+    // Create instance of invoice
     $invoice = LaravelBitpay::Invoice();
 
     // Create instance of item
@@ -66,7 +67,7 @@ public function createInvoice()
     $invoice->setItem($item);
 
     // Order reference number from the point-of-sale (POS). 
-    // It should be a unique identifer for each order that you submit. 
+    // It should be a unique identifier for each order that you submit. 
     $invoice->setPosData(uniqid()); // Optional
 
     // Create buyer instance
@@ -76,7 +77,7 @@ public function createInvoice()
     $buyer->setFirstName('Vaibhav')
         ->setLastName('Roham');
 
-    // Add buyer to invocie
+    // Add buyer to invoice
     $invoice->setBuyer($buyer);
 
     // Set currency for this invoice
@@ -85,7 +86,7 @@ public function createInvoice()
     // Create invoice on BitPay server
     $invoice = LaravelBitpay::createInvoice($invoice);
 
-    // Redirect user to following url for payment approval. 
+    // Redirect user to following URL for payment approval. 
     // Or you can create stripe like checkout from https://bitpay.com/create-checkout
     $paymentUrl = $invoice->getUrl();
 }
