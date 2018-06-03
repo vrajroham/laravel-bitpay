@@ -8,8 +8,8 @@ return [
     'private_key' => env('BITPAY_PRIVATE_KEY_PATH', '/tmp/laravel-bitpay.pri'),
 
     /*
-     | This is the full path and name for the public key.
-     | The default value is /tmp/laravel-bitpay.pub
+     * This is the full path and name for the public key.
+     * The default value is /tmp/laravel-bitpay.pub
      */
     'public_key' => env('BITPAY_PUBLIC_KEY_PATH', '/tmp/laravel-bitpay.pub'),
 
