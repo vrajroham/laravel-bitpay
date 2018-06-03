@@ -153,6 +153,7 @@ class CreateKeypair extends Command
         $this->info(' - Pairing with BitPay server.');
 
         try {
+            $this->pairingCodeLabel = config('app.name')."_BitPay_Client";
             $newToken = $this->client->createToken([
                     'pairingCode' => $this->pairingCode,
                     'label' => $this->pairingCodeLabel,

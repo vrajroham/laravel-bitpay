@@ -5,8 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://scrutinizer-ci.com/g/vrajroham/laravel-bitpay)
 [![Total Downloads](https://img.shields.io/packagist/dt/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 
-Accept Bitcoin payments via. [BitPay](https://bitpay.com) on your Laravel application securely using BitPay client.
-
+Accept Bitcoin and Bitcoin Cash for your business with your Laravel application and BitPay client.
 ## Installation
 
 You can install the package via composer:
