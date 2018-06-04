@@ -88,6 +88,9 @@ public function createInvoice()
     // Redirect URL on success
     $invoice->setRedirectUrl(route('bitpay-redirect-back'));
 
+    // Webhook URL to receive various events
+    $invoice->setNotificationUrl(route('bitpay-webhook'));
+
     // Redirect user to following URL for payment approval. 
     // Or you can create stripe like checkout from https://bitpay.com/create-checkout
     $paymentUrl = $invoice->getUrl();
