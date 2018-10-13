@@ -2,6 +2,6 @@
 
 All notable changes to `vrajroham/laravel-bitpay` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 1.1.0 - 2018-10-08
 
-- initial release
+- Allow min support version for php7.0
