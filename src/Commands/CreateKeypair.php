@@ -2,7 +2,6 @@
 
 namespace Vrajroham\LaravelBitpay\Commands;
 
-use Bitpay\Bitpay;
 use Bitpay\SinKey;
 use Bitpay\PublicKey;
 use Bitpay\PrivateKey;

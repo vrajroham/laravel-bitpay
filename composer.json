@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "bitpay/php-client": "dev-master"
+        "bitpay/php-client": "~2.2"
     },
     "require-dev": {
         "larapack/dd": ">=1.0",
