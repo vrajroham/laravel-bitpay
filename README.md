@@ -11,11 +11,12 @@ Accept Bitcoin and Bitcoin Cash for your business with your Laravel application 
 
 ## Contents
 - [Installation](#installation)
-- [Steps to configure and pair with BitPay Server](#steps-to-configure-and-pair-with-bitPay-server)
     + [Install Package](#install-package)
     + [Publish config file](#publish-config-file)
+    + [Add configuration values](#add-configuration-values)
     + [Add webhook event listener](#add-webhook-event-listener)
-- [Usage](#usage)
+    + [Connect to server and authenticate the client](#connect-to-server-and-authenticate-the-client)
+- [Examples](#examples)
     + [Create Invoice and checkout (step wise)](#create-invoice-and-checkout)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
@@ -38,6 +39,17 @@ Publish config file with:
 ```bash
 php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServiceProvider"
 ```
+
+#### Add configuration values
+- Add following keys to `.env` file and updated the details ([view more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
+
+```dotenv
+BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
+BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
+BITPAY_NETWORK=testnet
+BITPAY_KEY_STORAGE_PASSWORD=SomeRandomePasswordForKeypairEncryption
+BITPAY_TOKEN=
+``` 
 
 #### Add webhook event listener
 By default package is capable of handling of webhook requests. Bitpay payment status updates are completely based on webhooks. Whenever webhook is received from server, `BitpayWebhookReceived` event is dispatched. You just need to provide a listener for this event.
@@ -75,9 +87,11 @@ class ProcessBitpayWebhook
 }
 ```
 
-Next, add listener to Event service provider's `$listen` array as below,
+Next, add listener to EventServiceProvider's `$listen` array as below,
 
 ```php
+<?php
+
 class EventServiceProvider extends ServiceProvider{}
     protected $listen = [
         // Other events and listeners
@@ -93,17 +107,7 @@ class EventServiceProvider extends ServiceProvider{}
 }
 ```
 
-## Steps to configure and pair with BitPay Server
-
-- Add following keys to `.env` file and updated the details ([view more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
-
-    ```dotenv
-    BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
-    BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
-    BITPAY_NETWORK=testnet
-    BITPAY_KEY_STORAGE_PASSWORD=SomeRandomePasswordForKeypairEncryption
-    BITPAY_TOKEN=
-    ``` 
+## Connect to server and authenticate the client
 
 - Create keypairs and pair your client(application) with BitPay server.
 
@@ -122,7 +126,7 @@ class EventServiceProvider extends ServiceProvider{}
 
 - You are all set. :golf:
 
-### Usage
+### Examples
 
 ##### Create Invoice and checkout
 
