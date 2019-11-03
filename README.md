@@ -12,8 +12,11 @@ Accept Bitcoin and Bitcoin Cash for your business with your Laravel application 
 ## Contents
 - [Installation](#installation)
 - [Steps to configure and pair with BitPay Server](#steps-to-configure-and-pair-with-bitPay-server)
+    + [Install Package](#install-package)
+    + [Publish config file](#publish-config-file)
+    + [Setup webhook route](#setup-webhook-route)
 - [Usage](#usage)
-    + [Create Invoice and checkout](#create-invoice-and-checkout)
+    + [Create Invoice and checkout (step wise)](#create-invoice-and-checkout)
 - [Changelog](#changelog)
 - [Contributing](#contributing)
 - [Security](#security)
@@ -22,16 +25,26 @@ Accept Bitcoin and Bitcoin Cash for your business with your Laravel application 
 
 ## Installation
 
+#### Install package
 You can install the package via composer:
 
 ```bash
 composer require vrajroham/laravel-bitpay
 ```
+
+#### Publish config file
 Publish config file with:
 
 ```bash
 php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServiceProvider"
 ```
+
+#### Setup webhook route
+Add following line to your `web.php` file.
+```php
+Route::get()
+```
+
 ## Steps to configure and pair with BitPay Server
 
 - Add following keys to `.env` file and updated the details ([view more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
