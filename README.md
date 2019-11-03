@@ -191,7 +191,7 @@ public function createInvoice()
 
 <p align="center"><a href="https://ibb.co/X8JhftX"><img src="https://i.ibb.co/FV7Skz6/Screenshot-2019-11-03-at-5-31-33-PM.png" alt="Screenshot-2019-11-03-at-5-31-33-PM" border="0"></a></p>
 
-- Next, open your bitpay wallet and make a payment. Something like below,
+- Next, open your bitpay wallet, scan the code and make a payment. Something like below,
 <p align="center"><a href="https://ibb.co/FY4G4gZ"><img src="https://i.ibb.co/WzvSvg8/IMG-3639.png" alt="IMG-3639" border="1"></a></p>
 
 - Once payment is done, success screen will be displayed and user needs to click on **Return to Shop Name**.
