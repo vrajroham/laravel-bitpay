@@ -9,6 +9,17 @@ Accept Bitcoin and Bitcoin Cash for your business with your Laravel application 
 
 > Recently bitpay discontinued support for old php-skd which was used by this wrapper. I'm working on V2 of this wrapper which will utilize bitpay's new php-sdk.
 
+## Contents
+- [Installation](#installation)
+- [Steps to configure and pair with BitPay Server](#steps-to-configure-and-pair-with-bitPay-server)
+- [Usage](#usage)
+    + [Create Invoice and checkout](#create-invoice-and-checkout)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+- [Security](#security)
+- [Credits](#credits)
+- [License](#license)
+
 ## Installation
 
 You can install the package via composer:
@@ -111,7 +122,7 @@ public function createInvoice()
 
 - Payment done! Now you need to wait for webhook to get notification regarding status of payment.
 
-### Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
@@ -119,7 +130,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-### Security
+## Security
 
 If you discover any security related issues, please email vaibhavraj@vrajroham.me instead of using the issue tracker.
 
