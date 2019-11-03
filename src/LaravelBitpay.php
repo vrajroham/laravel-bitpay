@@ -37,6 +37,10 @@ class LaravelBitpay
      */
     public static function createInvoice(Invoice $invoice): Invoice
     {
+        if ('' == $invoice->getNotificationURL()) {
+            $invoice->setNotificationURL(route('laravel-bitpay.webhook.capture'));
+        }
+
         return (new self())->client->createInvoice($invoice);
     }
 

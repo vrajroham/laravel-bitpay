@@ -14,7 +14,7 @@ Accept Bitcoin and Bitcoin Cash for your business with your Laravel application 
 - [Steps to configure and pair with BitPay Server](#steps-to-configure-and-pair-with-bitPay-server)
     + [Install Package](#install-package)
     + [Publish config file](#publish-config-file)
-    + [Setup webhook route](#setup-webhook-route)
+    + [Add webhook event listener](#add-webhook-event-listener)
 - [Usage](#usage)
     + [Create Invoice and checkout (step wise)](#create-invoice-and-checkout)
 - [Changelog](#changelog)
@@ -39,10 +39,58 @@ Publish config file with:
 php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServiceProvider"
 ```
 
-#### Setup webhook route
-Add following line to your `web.php` file.
+#### Add webhook event listener
+By default package is capable of handling of webhook requests. Bitpay payment status updates are completely based on webhooks. Whenever webhook is received from server, `BitpayWebhookReceived` event is dispatched. You just need to provide a listener for this event.
+
+You can add your listener as below,
 ```php
-Route::get()
+<?php
+
+namespace App\Listeners;
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Vrajroham\LaravelBitpay\Events\BitpayWebhookReceived;
+
+class ProcessBitpayWebhook
+{
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param object $event
+     */
+    public function handle(BitpayWebhookReceived $event)
+    {
+        $orderId = $event->payload['orderId'];
+        $status = $event->payload['status'];
+        // Other payload properties
+    }
+}
+```
+
+Next, add listener to Event service provider's `$listen` array as below,
+
+```php
+class EventServiceProvider extends ServiceProvider{}
+    protected $listen = [
+        // Other events and listeners
+        BitpayWebhookReceived::class => [
+            ProcessBitpayWebhook::class,
+        ],
+    ];
+
+    public function boot()
+    {
+        parent::boot();
+    }
+}
 ```
 
 ## Steps to configure and pair with BitPay Server
