@@ -1,0 +1,14 @@
+BitPayConfiguration:
+  Environment: null
+  EnvConfig:
+    Test:
+      PrivateKeyPath: null
+      PrivateKeySecret: null
+      ApiTokens:
+        merchant: null
+        payroll: null
+    Prod:
+      PrivateKeyPath: null
+      ApiTokens:
+        merchant: null
+        payroll: null
