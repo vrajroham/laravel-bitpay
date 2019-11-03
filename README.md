@@ -51,45 +51,35 @@ public function createInvoice()
     // Create instance of invoice
     $invoice = LaravelBitpay::Invoice();
 
-    // Create instance of item
-    $item = LaravelBitpay::Item();
+    // Set item details (Only 1 item)
+    $invoice->setItemDesc('Photo');
+    $invoice->setItemCode('sku-1');
+    $invoice->setPrice(1);
+    $invoice->setOrderId(12345); // E.g. Your order number
 
-    // Set item details
-    $item->setCode('124')
-        ->setDescription('Item 1')
-        ->setPrice('1.99');
-
-    // Add item to invoice. (Only one item can be added)
-    $invoice->setItem($item);
-
-    // Order reference number from the point-of-sale (POS). 
-    // It should be a unique identifier for each order that you submit. 
-    $invoice->setPosData(uniqid()); // Optional
-
-    // Create buyer instance
+    // Create Buyer Instance
     $buyer = LaravelBitpay::Buyer();
-
-    // Add buyer details
-    $buyer->setFirstName('Vaibhav')
-        ->setLastName('Roham');
+    $buyer->setName('Vaibhavraj Roham');
+    $buyer->setEmail('test@example.me');
+    $buyer->setAddress1('Kopargaon');
+    $buyer->setNotify(true);
 
     // Add buyer to invoice
     $invoice->setBuyer($buyer);
 
-    // Set currency for this invoice
-    $invoice->setCurrency(LaravelBitpay::Currency('USD'));
+    // Set currency
+    $invoice->setCurrency('USD');
 
-    // Create invoice on BitPay server
-    $invoice = LaravelBitpay::createInvoice($invoice);
+    // Set redirect url to get back after completing the payment. GET Request
+    $invoice->setRedirectURL(route('bitpay-redirect-back'));
 
-    // Redirect URL on success
-    $invoice->setRedirectUrl(route('bitpay-redirect-back'));
-
-    // Webhook URL to receive various events
+    // Webhook URL to get notifications of payment. POST request
     $invoice->setNotificationUrl(route('bitpay-webhook'));
 
-    // Redirect user to following URL for payment approval. 
-    // Or you can create stripe like checkout from https://bitpay.com/create-checkout
+    // Create invoice on bitpay server.
+    $invoice = LaravelBitpay::createInvoice($invoice);
+
+    // Redirect user to following URL for payment approval.
     $paymentUrl = $invoice->getUrl();
 }
 ```
