@@ -39,15 +39,28 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
     php artisan laravel-bitpay:createkeypair
     ```
     
-<p align="center"><a href="https://ibb.co/gTpZxXV"><img src="https://i.ibb.co/0MSyxWt/Screenshot-2019-11-03-at-7-01-56-PM.png" alt="Screenshot-2019-11-03-at-7-01-56-PM" border="0"></a></p>
+<p align="center"><a href="https://ibb.co/s9Z5jD6"><img src="https://i.ibb.co/DfZG468/Screenshot-2019-11-03-at-7-59-55-PM.png" alt="Screenshot-2019-11-03-at-7-59-55-PM" border="0"></a></p>
 
-- Done. :golf:
+- What exactly above command do?
+    + Above command will create **Private and Public key**, encrypt your private key using bitpay secure storage class using your provided password. 
+    + SIN (Service Identification Number) for your client will be created to uniquely identify requests from your server. 
+    + By using SIN **new Token and Pairing Code** will be created for your client on bitpay server and will be shown on your console output.
+    + Token will be used for all future request to bitpay and will automatically be copied to your `.env` file.
+    + Based on environment you set **TEST/LIVE**, command will provide URL to approve your client and you need to copy and search Pairing Code on bitpay server & approve it.
+
+- You are all set. :golf:
 
 ### Usage
 
 ##### Create Invoice and checkout
 
+Let's go step by step.
+
+- Create your internal system order and then initiate the workflow by creating bitpay invoice as below,
+
 ``` php
+use Vrajroham\LaravelBitpay\LaravelBitpay;
+
 public function createInvoice()
 {
     // Create instance of invoice
@@ -85,6 +98,18 @@ public function createInvoice()
     $paymentUrl = $invoice->getUrl();
 }
 ```
+
+- Once you get the invoice url for payment, redirect user to that particular url. Use will see something like below on browser.
+
+<p align="center"><a href="https://ibb.co/X8JhftX"><img src="https://i.ibb.co/FV7Skz6/Screenshot-2019-11-03-at-5-31-33-PM.png" alt="Screenshot-2019-11-03-at-5-31-33-PM" border="0"></a></p>
+
+- Next, open your bitpay wallet and make a payment. Something like below,
+<p align="center"><a href="https://ibb.co/FY4G4gZ"><img src="https://i.ibb.co/WzvSvg8/IMG-3639.png" alt="IMG-3639" border="1"></a></p>
+
+- Once payment is done, success screen will be displayed and user needs to click on **Return to Shop Name**.
+<p align="center"><a href="https://ibb.co/8M21RBv"><img src="https://i.ibb.co/Jn2Dbd6/Screenshot-2019-11-03-at-5-32-05-PM.png" alt="Screenshot-2019-11-03-at-5-32-05-PM" border="0"></a></p>
+
+- Payment done! Now you need to wait for webhook to get notification regarding status of payment.
 
 ### Changelog
 
