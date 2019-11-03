@@ -110,7 +110,7 @@ class CreateKeypair extends Command
         }
 
         $this->bar->advance();
-        $this->info(' - Using '.get_class($this->storageEngine).' for secure storage.');
+        $this->info(' - Using <options=bold;fg=red>'.get_class($this->storageEngine).'</> for secure storage.');
 
         $this->storageEngine->persist($this->privateKey);
 
