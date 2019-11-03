@@ -6,6 +6,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 
 Accept Bitcoin and Bitcoin Cash for your business with your Laravel application and BitPay client.
+
+> **Note** : Due to upstream dependency, this package cannot be used for Laravel > 6.* until the dependency is resolve from the upstream package [bitpay/php-bitpay-client](https://github.com/bitpay/php-bitpay-client).
+
 ## Installation
 
 You can install the package via composer:
