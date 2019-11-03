@@ -1,0 +1,54 @@
+{
+    "name": "vrajroham/laravel-bitpay",
+    "description": "Bitpay wrapper for laravel",
+    "keywords": [
+        "bitapy",
+        "BTC",
+        "laravel"
+    ],
+    "homepage": "https://github.com/vrajroham/laravel-bitpay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vaibhavraj Roham",
+            "email": "vaibhavraj@vrajroham.me",
+            "homepage": "https://vrajroham.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "bitpay/sdk": "~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vrajroham\\LaravelBitpay\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vrajroham\\LaravelBitpay\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vrajroham\\LaravelBitpay\\LaravelBitpayServiceProvider"
+            ],
+            "aliases": {
+                "LaravelBitpay": "Vrajroham\\LaravelBitpay\\LaravelBitpayFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
