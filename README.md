@@ -39,6 +39,8 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
     php artisan laravel-bitpay:createkeypair
     ```
     
+<p align="center"><a href="https://ibb.co/gTpZxXV"><img src="https://ibb.co/gTpZxXV" alt="laravel_bitpay_1" border="0"></a></p>
+
 - Done. :golf:
 
 ### Usage
