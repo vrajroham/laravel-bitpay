@@ -5,8 +5,8 @@ namespace Vrajroham\LaravelBitpay;
 use BitPaySDK\Model\Bill\Item;
 use BitPaySDK\Model\Currency;
 use BitPaySDK\Model\Invoice\Buyer;
-use Vrajroham\LaravelBitpay\Traits\LaravelBitpayTrait;
 use BitPaySDK\Model\Invoice\Invoice;
+use Vrajroham\LaravelBitpay\Traits\LaravelBitpayTrait;
 
 class LaravelBitpay
 {
