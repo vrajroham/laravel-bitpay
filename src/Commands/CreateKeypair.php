@@ -2,10 +2,10 @@
 
 namespace Vrajroham\LaravelBitpay\Commands;
 
-use BitPayKeyUtils\KeyHelper\PrivateKey;
-use Illuminate\Console\Command;
 use Bitpay\Client\BitpayException;
+use BitPayKeyUtils\KeyHelper\PrivateKey;
 use GuzzleHttp\Client;
+use Illuminate\Console\Command;
 use Vrajroham\LaravelBitpay\Traits\CreateKeypairTrait;
 
 class CreateKeypair extends Command
@@ -146,12 +146,12 @@ class CreateKeypair extends Command
         try {
             $this->pairingCodeLabel = config('app.name').'_BitPay_Client';
             $postData = [
-                'id' => (string) $this->sin,
-                'label' => $this->pairingCodeLabel,
+                'id'     => (string) $this->sin,
+                'label'  => $this->pairingCodeLabel,
                 'facade' => 'merchant',
             ];
             $response = $bitpayClient->post('/tokens', [
-                'json' => $postData,
+                'json'    => $postData,
                 'headers' => [
                     'x-accept-version: 2.0.0',
                     'Content-Type: application/json',
