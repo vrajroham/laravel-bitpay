@@ -1,4 +1,4 @@
-# Laravel + BitPay Integration (Version 2) [WIP]
+# Laravel + BitPay Integration (Version 2)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 [![Build Status](https://img.shields.io/travis/vrajroham/laravel-bitpay/master.svg?style=for-the-badge)](https://travis-ci.org/vrajroham/laravel-bitpay)
@@ -7,7 +7,7 @@
 
 Accept Bitcoin and Bitcoin Cash for your business with your Laravel application and BitPay client.
 
-> Recently bitpay discontinued support for old php-skd which was used by this wrapper. I'm working on V2 of this wrapper which will utilize bitpay's new php-sdk.
+> Requires PHP ^7.3
 
 ## Contents
 - [Installation](#installation)
