@@ -3,8 +3,8 @@
 namespace Vrajroham\LaravelBitpay\Traits;
 
 use BitPaySDK\Client as BitpayClient;
-use BitPaySDK\Tokens;
 use BitPaySDK\Env;
+use BitPaySDK\Tokens;
 use Vrajroham\LaravelBitpay\Exceptions\InvalidConfigurationException;
 
 trait LaravelBitpayTrait

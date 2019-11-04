@@ -14,9 +14,9 @@ class VerifyWebhookSignature
      * @param \Illuminate\Http\Request $request
      * @param \Closure                 $next
      *
-     * @return \Illuminate\Http\Response
-     *
      * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     *
+     * @return \Illuminate\Http\Response
      */
     public function handle($request, Closure $next)
     {
