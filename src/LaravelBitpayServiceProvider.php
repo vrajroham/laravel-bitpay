@@ -38,7 +38,7 @@ class LaravelBitpayServiceProvider extends ServiceProvider
     {
         if (!$this->app->routesAreCached()) {
             Route::group(['namespace' => 'Vrajroham\LaravelBitpay\Http\Controllers'],
-                function ($router) {
+                function($router) {
                     require __DIR__.'/Http/Routes/web.php';
                 }
             );
