@@ -17,7 +17,7 @@ trait LaravelBitpayTrait
             'testnet' == $this->config['network'] ? Env::Test : Env::Prod,
             $this->config['private_key'],
             new Tokens(
-                $this->config['token'], //merchant
+                $this->config['token'] //merchant
             ),
             $this->config['key_storage_password'] //used to decrypt your private key, if encrypted
         );
