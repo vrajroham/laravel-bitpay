@@ -7,7 +7,8 @@ use Illuminate\Queue\SerializesModels;
 
 class BitpayWebhookReceived
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
     /**
      * The webhook payload.
      *
