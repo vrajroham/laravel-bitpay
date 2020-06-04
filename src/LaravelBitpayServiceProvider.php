@@ -37,7 +37,8 @@ class LaravelBitpayServiceProvider extends ServiceProvider
     protected function defineRoutes()
     {
         if (!$this->app->routesAreCached()) {
-            Route::group(['namespace' => 'Vrajroham\LaravelBitpay\Http\Controllers'],
+            Route::group(
+                ['namespace' => 'Vrajroham\LaravelBitpay\Http\Controllers'],
                 function ($router) {
                     require __DIR__.'/Http/Routes/web.php';
                 }
