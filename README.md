@@ -96,7 +96,7 @@ Next, add listener to EventServiceProvider's `$listen` array as below,
 ```php
 <?php
 
-class EventServiceProvider extends ServiceProvider{}
+class EventServiceProvider extends ServiceProvider{
     protected $listen = [
         // Other events and listeners
         BitpayWebhookReceived::class => [
