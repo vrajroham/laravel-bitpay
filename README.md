@@ -139,6 +139,7 @@ Let's go step by step.
 - Create your internal system order and then initiate the workflow by creating bitpay invoice as below,
 
 ``` php
+use Illuminate\Support\Facades\Redirect;
 use Vrajroham\LaravelBitpay\LaravelBitpay;
 
 public function createInvoice()
@@ -182,8 +183,9 @@ public function createInvoice()
     // You can save invoice ID from server, for your your reference
     $invoiceId = $invoice->getId();
 
-    // Redirect user to following URL for payment approval.
     $paymentUrl = $invoice->getUrl();
+    // Redirect user to following URL for payment approval.
+    return Redirect::to($paymentUrl);
 }
 ```
 
