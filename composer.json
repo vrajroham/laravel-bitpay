@@ -17,11 +17,11 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
-        "bitpay/sdk": "~4.0"
+        "php": ">=7.3 || ^8.0",
+        "bitpay/sdk": "~v5.2"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=7.0"
+        "phpunit/phpunit": ">=9.5"
     },
     "autoload": {
         "psr-4": {
@@ -49,6 +49,5 @@
                 "LaravelBitpay": "Vrajroham\\LaravelBitpay\\LaravelBitpayFacade"
             }
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
