@@ -153,8 +153,8 @@ class CreateKeypair extends Command
             $response = $bitpayClient->post('/tokens', [
                 'json'    => $postData,
                 'headers' => [
-                    'x-accept-version: 2.0.0',
-                    'Content-Type: application/json',
+                    'x-accept-version' => '2.0.0',
+                    'Content-Type' => 'application/json',
                     // Todo: If added below headers, bitpay responds with error, "This endpoint does not support the `user` facade"
                     // 'x-identity' => $this->publicKey->__toString(),
                     // 'x-signature' => $this->privateKey->sign($this->network.'/tokens'.json_encode($postData)),
