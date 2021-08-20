@@ -144,7 +144,7 @@ class CreateKeypair extends Command
         $this->info(' - Connecting Bitpay server 🖥️  and generating token & pairing code.');
 
         try {
-            $this->pairingCodeLabel = config('app.name').'_BitPay_Client';
+            $this->pairingCodeLabel = config('laravel-bitpay.label').'_BitPay_Client';
             $postData = [
                 'id'     => (string) $this->sin,
                 'label'  => $this->pairingCodeLabel,

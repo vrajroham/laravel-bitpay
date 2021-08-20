@@ -43,12 +43,15 @@ php artisan vendor:publish --provider="Vrajroham\LaravelBitpay\LaravelBitpayServ
 #### Add configuration values
 Add following keys to `.env` file and updated the details ([view more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
 
+note: BITPAY_TOKEN_LABEL can be any name, but can not have spaces
+
 ```dotenv
 BITPAY_PRIVATE_KEY_PATH=/tmp/bitpay.pri
 BITPAY_PUBLIC_KEY_PATH=/tmp/bitpay.pub
 BITPAY_NETWORK=testnet
 BITPAY_KEY_STORAGE_PASSWORD=SomeRandomePasswordForKeypairEncryption
 BITPAY_TOKEN=
+BITPAY_TOKEN_LABEL=projectname
 ``` 
 
 #### Add webhook event listener

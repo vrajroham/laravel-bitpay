@@ -37,4 +37,9 @@ return [
      * BitPay Token
      */
     'token' => env('BITPAY_TOKEN', ''),
+
+    /*
+     * BitPay Token label
+     */
+    'label' => env('BITPAY_TOKEN_LABEL', 'projectlabel'),
 ];
