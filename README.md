@@ -52,7 +52,7 @@ BITPAY_TOKEN=
 ``` 
 
 #### Add webhook event listener
-By default package is capable of handling of webhook requests. Bitpay payment status updates are completely based on webhooks. Whenever webhook is received from server, `BitpayWebhookReceived` event is dispatched. You just need to provide a listener for this event.
+By default, package is capable of handling of webhook requests. Bitpay payment status updates are completely based on webhooks. Whenever webhook is received from server, `BitpayWebhookReceived` event is dispatched. You just need to provide a listener for this event.
 
 You can add your listener as below,
 ```php
@@ -126,7 +126,7 @@ class EventServiceProvider extends ServiceProvider{
     + SIN (Service Identification Number) for your client will be created to uniquely identify requests from your server. 
     + By using SIN **new Token and Pairing Code** will be created for your client on bitpay server and will be shown on your console output.
     + Token will be used for all future request to bitpay and will automatically be copied to your `.env` file.
-    + Based on environment you set **TEST/LIVE**, command will provide URL to approve your client and you need to copy and search Pairing Code on bitpay server & approve it.
+    + Based on environment you set **TEST/LIVE**, command will provide URL to approve your client, and then you need to copy and search Pairing Code on bitpay server & approve it.
 
 - You are all set. :golf:
 
