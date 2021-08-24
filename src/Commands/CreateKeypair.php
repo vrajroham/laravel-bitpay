@@ -71,8 +71,8 @@ class CreateKeypair extends Command
 
         $this->line('');
 
-        $this->line('<options=bold,underscore>Token</> - <options=bold;fg=green>'.$this->token.'</> //(Token copied to .env for you)');
-        $this->line('<options=bold,underscore>Pairing code</> - <options=bold;fg=green>'.$this->pairingCode.'</>');
+        $this->line('<options=bold,underscore>Token</> - <options=bold;fg=green>' . $this->token . '</> //(Token copied to .env for you)');
+        $this->line('<options=bold,underscore>Pairing code</> - <options=bold;fg=green>' . $this->pairingCode . '</>');
 
         $this->line('');
 
@@ -80,7 +80,7 @@ class CreateKeypair extends Command
 
         $this->line('');
 
-        $this->line('Open -> <href='.$this->network.'/dashboard/merchant/api-tokens>'.$this->network.'/dashboard/merchant/api-tokens</>');
+        $this->line('Open -> <href=' . $this->network . '/dashboard/merchant/api-tokens>' . $this->network . '/dashboard/merchant/api-tokens</>');
 
         $this->line('');
 
@@ -110,7 +110,7 @@ class CreateKeypair extends Command
         }
 
         $this->bar->advance();
-        $this->info(' - Using <options=bold;fg=red>'.get_class($this->storageEngine).'</> for secure storage.');
+        $this->info(' - Using <options=bold;fg=red>' . get_class($this->storageEngine) . '</> for secure storage.');
 
         $this->storageEngine->persist($this->privateKey);
 
@@ -144,9 +144,9 @@ class CreateKeypair extends Command
         $this->info(' - Connecting Bitpay server 🖥️  and generating token & pairing code.');
 
         try {
-            $this->pairingCodeLabel = config('laravel-bitpay.label').'_BitPay_Client';
+            $this->pairingCodeLabel = ucwords(str_replace(" ", "_", config('app.name'))) . '_BitPay_Client';
             $postData = [
-                'id'     => (string) $this->sin,
+                'id'     => (string)$this->sin,
                 'label'  => $this->pairingCodeLabel,
                 'facade' => 'merchant',
             ];
@@ -154,7 +154,7 @@ class CreateKeypair extends Command
                 'json'    => $postData,
                 'headers' => [
                     'x-accept-version' => '2.0.0',
-                    'Content-Type' => 'application/json',
+                    'Content-Type'     => 'application/json',
                     // Todo: If added below headers, bitpay responds with error, "This endpoint does not support the `user` facade"
                     // 'x-identity' => $this->publicKey->__toString(),
                     // 'x-signature' => $this->privateKey->sign($this->network.'/tokens'.json_encode($postData)),
