@@ -318,6 +318,7 @@ class LaravelBitpay
 //    /**
 //     * Retrieve the rate for a cryptocurrency / fiat pair
 //     *
+//     * @link https://bitpay.com/api/#rest-api-resources-rates-retrieve-the-rates-for-a-cryptocurrency-fiat-pair
 //     * @param string $baseCurrency The cryptocurrency for which you want to fetch the fiat-equivalent rate.
 //     *                             Current supported values are BTC, BCH, ETH, XRP, DOGE and LTC
 //     * @param string $currency The fiat currency for which you want to fetch the baseCurrency rate

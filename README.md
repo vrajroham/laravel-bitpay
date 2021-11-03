@@ -11,16 +11,16 @@ LaravelBitpay enables you and your business to transact in Bitcoin, Bitcoin Cash
 
 ### Supported Resources
 
-- [x] [Invoices](https://bitpay.com/api/#rest-api-resources-invoices)
-- [ ] [Settlements](https://bitpay.com/api/#rest-api-resources-settlements)
-- [ ] [Ledgers](https://bitpay.com/api/#rest-api-resources-ledgers)
-- [ ] [Recipients](https://bitpay.com/api/#rest-api-resources-recipients)
-- [ ] [Payouts](https://bitpay.com/api/#rest-api-resources-payouts)
-- [x] [Bills](https://bitpay.com/api/#rest-api-resources-bills)
-- [ ] [Subscriptions](https://bitpay.com/api/#rest-api-resources-subscriptions)
-- [x] [Rates](https://bitpay.com/api/#rest-api-resources-rates)
-- [ ] [Sessions](https://bitpay.com/api/#rest-api-resources-sessions)
-- [x] [Currencies](https://bitpay.com/api/#rest-api-resources-currencies)
+- :white_check_mark: [Invoices](https://bitpay.com/api/#rest-api-resources-invoices)
+- :hourglass_flowing_sand: [Settlements](https://bitpay.com/api/#rest-api-resources-settlements)
+- :hourglass_flowing_sand: [Ledgers](https://bitpay.com/api/#rest-api-resources-ledgers)
+- :hourglass_flowing_sand: [Recipients](https://bitpay.com/api/#rest-api-resources-recipients)
+- :hourglass_flowing_sand: [Payouts](https://bitpay.com/api/#rest-api-resources-payouts)
+- :white_check_mark: [Bills](https://bitpay.com/api/#rest-api-resources-bills)
+- :hourglass_flowing_sand: [Subscriptions](https://bitpay.com/api/#rest-api-resources-subscriptions)
+- :white_check_mark: [Rates](https://bitpay.com/api/#rest-api-resources-rates)
+- :hourglass_flowing_sand: [Sessions](https://bitpay.com/api/#rest-api-resources-sessions)
+- :white_check_mark: [Currencies](https://bitpay.com/api/#rest-api-resources-currencies)
 
 ## Contents
 
