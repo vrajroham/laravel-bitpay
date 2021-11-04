@@ -1,8 +1,8 @@
 {
     "name": "vrajroham/laravel-bitpay",
-    "description": "Bitpay wrapper for laravel",
+    "description": "BitPay wrapper for laravel",
     "keywords": [
-        "bitapy",
+        "bitpay",
         "BTC",
         "laravel"
     ],
@@ -13,6 +13,12 @@
             "name": "Vaibhavraj Roham",
             "email": "vaibhavraj@vrajroham.me",
             "homepage": "https://vrajroham.me",
+            "role": "Developer"
+        },
+        {
+            "name": "Alex Stewart",
+            "email": "iamalexstewart@gmail.com",
+            "homepage": "https://github.com/alexstewartja",
             "role": "Developer"
         }
     ],
