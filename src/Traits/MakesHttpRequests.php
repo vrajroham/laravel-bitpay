@@ -4,12 +4,19 @@ namespace Vrajroham\LaravelBitpay\Traits;
 
 use BitPaySDK\Client as BitpayClient;
 use BitPaySDK\Env;
+use BitPaySDK\Exceptions\BitPayException;
 use BitPaySDK\Tokens;
 use Vrajroham\LaravelBitpay\Exceptions\InvalidConfigurationException;
 
-trait LaravelBitpayTrait
+trait MakesHttpRequests
 {
-    public function authenticate()
+    /**
+     * Get the BitPay client.
+     *
+     * @throws InvalidConfigurationException
+     * @throws BitPayException
+     */
+    public function setupClient()
     {
         $this->validateAndLoadConfig();
 
@@ -23,6 +30,11 @@ trait LaravelBitpayTrait
         );
     }
 
+    /**
+     * Validate and load the config.
+     *
+     * @throws InvalidConfigurationException
+     */
     public function validateAndLoadConfig()
     {
         $config = config('laravel-bitpay');
