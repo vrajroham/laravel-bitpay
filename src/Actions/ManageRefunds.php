@@ -21,6 +21,7 @@ trait ManageRefunds
      * Create a BitPay refund.
      *
      * @link https://bitpay.com/api/#rest-api-resources-invoices-refund-an-invoice
+     *
      * @param $invoice          Invoice A BitPay invoice object for which a refund request should be made.  Must have
      *                          been obtained using the merchant facade.
      * @param $refundEmail      string The email of the buyer to which the refund email will be sent
@@ -29,7 +30,9 @@ trait ManageRefunds
      * @param $currency         string The three digit currency code specifying the exchange rate to use when
      *                          calculating the refund bitcoin amount. If this value is "BTC" then no exchange rate
      *                          calculation is performed.
+     *
      * @return bool True if the refund was successfully created, false otherwise.
+     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
      */
     public static function createRefund(
         Invoice $invoice,
@@ -45,7 +48,9 @@ trait ManageRefunds
      * Retrieve all refund requests on a BitPay invoice.
      *
      * @link https://bitpay.com/api/#rest-api-resources-invoices-retrieve-all-refund-requests-on-an-invoice
+     *
      * @param $invoice  Invoice The BitPay invoice having the associated refunds.
+     *
      * @return array An array of BitPay refund object with the associated Refund object updated.
      * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
      */
@@ -58,9 +63,12 @@ trait ManageRefunds
      * Retrieve a previously made refund request on a BitPay invoice.
      *
      * @link https://bitpay.com/api/#rest-api-resources-invoices-retrieve-a-refund-request
+     *
      * @param $invoice  Invoice The BitPay invoice having the associated refund.
      * @param $refundId string The refund id for the refund to be updated with new status.
+     *
      * @return Refund A BitPay refund object with the associated Refund object updated.
+     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
      */
     public static function getRefund(Invoice $invoice, string $refundId): Refund
     {
@@ -71,10 +79,13 @@ trait ManageRefunds
      * Cancel a previously submitted refund request on a BitPay invoice.
      *
      * @link https://bitpay.com/api/#rest-api-resources-invoices-cancel-a-refund-request
+     *
      * @param $invoiceId string The refund id for the refund to be canceled.
      * @param $refund    Refund The BitPay invoice having the associated refund to be canceled.
      *                   Must have been obtained using the merchant facade.
+     *
      * @return bool True if the refund was successfully canceled, false otherwise.
+     * @throws \BitPaySDK\Exceptions\RefundCancellationException RefundCancellationException class
      */
     public static function cancelRefund(string $invoiceId, Refund $refund): bool
     {
