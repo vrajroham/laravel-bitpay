@@ -407,7 +407,7 @@ $itemTres->setQuantity(1);
 $existingBill->setItems(array_merge($existingItems, [$itemTres]));
 
 // Update Bill
-$updatedBill = LaravelBitpay::updateBill($existingBill, 'bill1234-EFGH');
+$updatedBill = LaravelBitpay::updateBill($existingBill, $existingBill->getId());
 ```
 
 #### Deliver a bill via email
@@ -415,10 +415,7 @@ $updatedBill = LaravelBitpay::updateBill($existingBill, 'bill1234-EFGH');
 ```php
 $bill = LaravelBitpay::getBill('bill1234-EFGH');
 
-$billId = $bill->getId();
-$billToken = $bill->getToken();
-
-$billDelivery = LaravelBitpay::deliverBill($billId, $billToken);
+$billDelivery = LaravelBitpay::deliverBill($bill->getId(), $bill->getToken());
 
 if ($billDelivery === 'Success') {
     // Bill delivered successfully. Do something about that... or not.
@@ -509,9 +506,10 @@ In this example we activate a Subscription by updating its status:
 
 ```php
 $subscriptionData = LaravelBitpay::Subscription();
+$subscriptionData->setId('6gqe8y5mkc5Qx2a9zmspgx');
 $subscriptionData->setStatus(BitPayConstants::SUBSCRIPTION_STATUS_ACTIVE);
 
-$activatedSubscription = LaravelBitpay::updateSubscription($subscriptionData, '6gqe8y5mkc5Qx2a9zmspgx');
+$activatedSubscription = LaravelBitpay::updateSubscription($subscriptionData, $subscriptionData->getId());
 ```
 
 ### Currencies
