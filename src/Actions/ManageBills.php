@@ -3,6 +3,8 @@
 namespace Vrajroham\LaravelBitpay\Actions;
 
 use BitPaySDK\Model\Bill\Bill;
+use BitPaySDK\Model\Bill\Item;
+
 
 trait ManageBills
 {
@@ -16,6 +18,23 @@ trait ManageBills
     public static function Bill(): Bill
     {
         return new Bill();
+    }
+
+    /**
+     * @return Item  A BitPay Bill Item
+     * @deprecated Use <code>LaravelBitpay::BillItem()</code> instead.
+     */
+    public static function Item(): Item
+    {
+        return new Item();
+    }
+
+    /**
+     * @return Item  A BitPay Bill Item
+     */
+    public static function BillItem(): Item
+    {
+        return new Item();
     }
 
     /**
