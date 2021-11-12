@@ -335,7 +335,7 @@ In the following example, we create a bill that's due in 10 days:
 $billData = LaravelBitpay::Bill();
 $billData->setNumber('bill1234-EFGH');
 $billData->setCurrency(Currency::USD); // Always use the BitPay Currency model to prevent typos
-$dueDate = date(BitPayConstants::BITPAY_DATETIME_FORMAT, strtotime('+10 days')); // ISO-8601 formatted date
+$dueDate = date(BitPayConstants::DATETIME_FORMAT, strtotime('+10 days')); // ISO-8601 formatted date
 $billData->setDueDate($dueDate);
 $billData->setPassProcessingFee(true); // Let the recipient shoulder BitPay's processing fee
 
@@ -399,15 +399,18 @@ We managed to upsell a product to our client. Let's add an extra line item to th
 $existingBill = LaravelBitpay::getBill('bill1234-EFGH');
 $existingItems = $existingBill->getItems();
 
+$billData = LaravelBitpay::Bill();
+$billData->setId($existingBill->getId());
+
 $itemTres = LaravelBitpay::BillItem();
 $itemTres->setDescription('The Tomorrow War "White Spike" Life-Size Wax Figure');
 $itemTres->setPrice(189.99);
 $itemTres->setQuantity(1);
 
-$existingBill->setItems(array_merge($existingItems, [$itemTres]));
+$billData->setItems(array_merge($existingItems, [$itemTres]));
 
 // Update Bill
-$updatedBill = LaravelBitpay::updateBill($existingBill, $existingBill->getId());
+$updatedBill = LaravelBitpay::updateBill($billData, $billData->getId());
 ```
 
 #### Deliver a bill via email
