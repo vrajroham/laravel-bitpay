@@ -436,7 +436,7 @@ Let's create a subscription that's delivered on the 28th of each month and due o
 ```php
 // Initialize Subscription
 $subscriptionData = LaravelBitpay::Subscription();
-$subscriptionData->setSchedule(LaravelBitpay::SUBSCRIPTION_SCHEDULE_MONTHLY);
+$subscriptionData->setSchedule(BitPayConstants::SUBSCRIPTION_SCHEDULE_MONTHLY);
 
 // Optional recurring bill data
 $billData = [
