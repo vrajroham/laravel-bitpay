@@ -1,4 +1,6 @@
-# Laravel + BitPay Integration
+# LaravelBitPay
+
+![LaravelBitPay Social Image](https://banners.beyondco.de/Laravel%20BitPay.png?theme=light&packageManager=composer+require&packageName=vrajroham%2Flaravel-bitpay&pattern=circuitBoard&style=style_1&description=Transact+in+Bitcoin%2C+Bitcoin+Cash+and+10%2B+other+BitPay-supported+cryptocurrencies+within+your+Laravel+application.&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vrajroham/laravel-bitpay.svg?style=for-the-badge)](https://packagist.org/packages/vrajroham/laravel-bitpay)
 [![Build Status](https://img.shields.io/travis/vrajroham/laravel-bitpay/master.svg?style=for-the-badge)](https://travis-ci.org/vrajroham/laravel-bitpay)
@@ -17,7 +19,7 @@ LaravelBitpay enables you and your business to transact in Bitcoin, Bitcoin Cash
 - :hourglass_flowing_sand: [Recipients](https://bitpay.com/api/#rest-api-resources-recipients)
 - :hourglass_flowing_sand: [Payouts](https://bitpay.com/api/#rest-api-resources-payouts)
 - :white_check_mark: [Bills](https://bitpay.com/api/#rest-api-resources-bills)
-- :hourglass_flowing_sand: [Subscriptions](https://bitpay.com/api/#rest-api-resources-subscriptions)
+- :white_check_mark: [Subscriptions](https://bitpay.com/api/#rest-api-resources-subscriptions)
 - :white_check_mark: [Rates](https://bitpay.com/api/#rest-api-resources-rates)
 - :hourglass_flowing_sand: [Sessions](https://bitpay.com/api/#rest-api-resources-sessions)
 - :white_check_mark: [Currencies](https://bitpay.com/api/#rest-api-resources-currencies)
@@ -45,6 +47,11 @@ LaravelBitpay enables you and your business to transact in Bitcoin, Bitcoin Cash
         + [Retrieve a list of existing bills](#retrieve-a-list-of-existing-bills)
         + [Update a bill](#update-a-bill)
         + [Deliver a bill via email](#deliver-a-bill-via-email)
+    + [Subscriptions](#subscriptions)
+        + [Create a subscription](#create-a-subscription)
+        + [Retrieve a subscription](#retrieve-a-subscription)
+        + [Retrieve a list of existing subscriptions](#retrieve-a-list-of-existing-subscriptions)
+        + [Update a subscription](#update-a-subscription)
     + [Currencies](#currencies)
         + [Retrieve the supported currencies](#retrieve-the-supported-currencies)
     + [Rates](#rates)
@@ -328,7 +335,7 @@ In the following example, we create a bill that's due in 10 days:
 $billData = LaravelBitpay::Bill();
 $billData->setNumber('bill1234-EFGH');
 $billData->setCurrency(Currency::USD); // Always use the BitPay Currency model to prevent typos
-$dueDate = date('Y-m-d\TH:i:s\Z', strtotime('+10 days')); // ISO-8601 formatted date
+$dueDate = date(BitPayConstants::BITPAY_DATETIME_FORMAT, strtotime('+10 days')); // ISO-8601 formatted date
 $billData->setDueDate($dueDate);
 $billData->setPassProcessingFee(true); // Let the recipient shoulder BitPay's processing fee
 
@@ -345,12 +352,12 @@ $billData->setCc(['jane.doe@example.com']);
 $billData->setPhone('555-123-456');
 
 // Prepare Bill's line item(s)
-$itemUno = LaravelBitpay::Item();
+$itemUno = LaravelBitpay::BillItem();
 $itemUno->setDescription('Squid Game "Front Man" Costume');
 $itemUno->setPrice(49.99);
 $itemUno->setQuantity(2);
 
-$itemDos = LaravelBitpay::Item();
+$itemDos = LaravelBitpay::BillItem();
 $itemDos->setDescription('GOT "House Stark" Sterling Silver Pendant');
 $itemDos->setPrice(35);
 $itemDos->setQuantity(1);
@@ -381,10 +388,7 @@ $bill = LaravelBitpay::getBill('bill1234-EFGH');
 You can narrow down the retrieved list by specifying a Bill status:
 
 ```php
-// Status can be "draft", "sent", "new", "paid", or "complete"
-$status = 'paid';
-
-$paidBills = LaravelBitpay::getBills($status);
+$paidBills = LaravelBitpay::getBills(BitPayConstants::BILL_STATUS_PAID);
 ```
 
 #### Update a bill
@@ -395,17 +399,15 @@ We managed to upsell a product to our client. Let's add an extra line item to th
 $existingBill = LaravelBitpay::getBill('bill1234-EFGH');
 $existingItems = $existingBill->getItems();
 
-$billData = LaravelBitpay::Bill();
-
-$itemTres = LaravelBitpay::Item();
+$itemTres = LaravelBitpay::BillItem();
 $itemTres->setDescription('The Tomorrow War "White Spike" Life-Size Wax Figure');
 $itemTres->setPrice(189.99);
 $itemTres->setQuantity(1);
 
-$billData->setItems(array_merge($existingItems, [$itemTres]));
+$existingBill->setItems(array_merge($existingItems, [$itemTres]));
 
 // Update Bill
-$updatedBill = LaravelBitpay::updateBill($billData, 'bill1234-EFGH');
+$updatedBill = LaravelBitpay::updateBill($existingBill, 'bill1234-EFGH');
 ```
 
 #### Deliver a bill via email
@@ -416,11 +418,100 @@ $bill = LaravelBitpay::getBill('bill1234-EFGH');
 $billId = $bill->getId();
 $billToken = $bill->getToken();
 
-$billDelivery = json_decode(LaravelBitpay::deliverBill($billId, $billToken));
+$billDelivery = LaravelBitpay::deliverBill($billId, $billToken);
 
-if (isset($billDelivery->data) && $billDelivery->data == 'Success') {
+if ($billDelivery === 'Success') {
     // Bill delivered successfully. Do something about that... or not.
 }
+```
+
+### Subscriptions
+
+Subscriptions are repeat billing agreements with specific buyers. BitPay sends bill emails to buyers identified in active subscriptions according to the specified schedule.
+
+#### Create a subscription
+
+Let's create a subscription that's delivered on the 28th of each month and due on the first of the following month, at 9 AM, respectively: 
+
+```php
+// Initialize Subscription
+$subscriptionData = LaravelBitpay::Subscription();
+$subscriptionData->setSchedule(LaravelBitpay::SUBSCRIPTION_SCHEDULE_MONTHLY);
+
+// Optional recurring bill data
+$billData = [
+    'number'            => 'subscription1234-ABCD',
+    'name'              => 'John Doe',
+    'address1'          => '2630 Hegal Place',
+    'address2'          => 'Apt 42',
+    'city'              => 'Alexandria',
+    'state'             => 'VA',
+    'zip'               => 23242,
+    'country'           => 'US',
+    'cc'                => ['jane.doe@example.com'],
+    'phone'             => '555-123-456',
+    'passProcessingFee' => true,
+];
+
+$dueDate = date(BitPayConstants::DATETIME_FORMAT, strtotime('first day of next month 9 AM'));
+
+$billItems = array(
+    LaravelBitpay::SubscriptionItem(100.00, 1, 'Web Hosting - 4 CPUs | 16GB Memory | 400GB SSD'),
+    LaravelBitpay::SubscriptionItem(80.00, 1, 'Basic Website Maintenance'),
+);
+
+// Autofill optional bill data
+$mapper = new JsonMapper();
+$billData = $mapper->map(
+    $billData,
+    LaravelBitpay::BillData(
+        Currency::USD, // Always use the BitPay Currency model to prevent typos
+        'john.doe@example.com',
+        $dueDate,
+        $billItems
+    )
+);
+
+$subscriptionData->setBillData($billData);
+
+// A little wizardry to always get the 28th day of the current month (leap year safe)
+$deliveryDate = strtotime('first day of this month 9 AM');
+$deliveryDate = new \DateTime("@$deliveryDate");
+$deliveryDate = $deliveryDate->modify('+27 days')->getTimestamp();
+$deliveryDate = date(BitPayConstants::DATETIME_FORMAT, $deliveryDate);
+
+$subscriptionData->setNextDelivery($deliveryDate);
+
+// Create the Subscription on BitPay
+$subscription = LaravelBitpay::createSubscription($subscriptionData);
+
+// You may then store the Subscription ID for future reference
+$subscriptionId = $subscription->getId();
+```
+
+#### Retrieve a subscription
+
+```php
+$subscription = LaravelBitpay::getSubscription('6gqe8y5mkc5Qx2a9zmspgx');
+```
+
+#### Retrieve a list of existing subscriptions
+
+You can narrow down the retrieved list by specifying a Subscription status:
+
+```php
+$activeSubscriptions = LaravelBitpay::getSubscriptions(BitPayConstants::SUBSCRIPTION_STATUS_ACTIVE);
+```
+
+#### Update a subscription
+
+In this example we activate a Subscription by updating its status:
+
+```php
+$subscriptionData = LaravelBitpay::Subscription();
+$subscriptionData->setStatus(BitPayConstants::SUBSCRIPTION_STATUS_ACTIVE);
+
+$activatedSubscription = LaravelBitpay::updateSubscription($subscriptionData, '6gqe8y5mkc5Qx2a9zmspgx');
 ```
 
 ### Currencies
@@ -462,6 +553,7 @@ If you discover any security related issues, please email vaibhavraj@vrajroham.m
 ## Credits
 
 - [Vaibhavraj Roham](https://github.com/vrajroham)
+- [Alex Stewart](https://github.com/alexstewartja)
 - [All Contributors](../../contributors)
 
 ## License
