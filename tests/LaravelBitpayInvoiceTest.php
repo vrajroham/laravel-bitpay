@@ -13,18 +13,18 @@ class LaravelBitpayInvoiceTest extends TestCase
     /** @test */
     public function isInstanceOfInvoice()
     {
-        $this->assertEquals(LaravelBitpay::Invoice() instanceof BitPaySDKInvoice, true);
+        $this->assertEquals(true, LaravelBitpay::Invoice() instanceof BitPaySDKInvoice);
     }
 
     /** @test */
     public function isInstanceOfBuyer()
     {
-        $this->assertEquals(LaravelBitpay::Buyer() instanceof Buyer, true);
+        $this->assertEquals(true, LaravelBitpay::Buyer() instanceof Buyer);
     }
 
     /** @test */
     public function isInstanceOfRefund()
     {
-        $this->assertEquals(LaravelBitpay::Refund() instanceof Refund, true);
+        $this->assertEquals(true, LaravelBitpay::Refund() instanceof Refund);
     }
 }

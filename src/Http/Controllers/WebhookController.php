@@ -4,7 +4,7 @@ namespace Vrajroham\LaravelBitpay\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Vrajroham\LaravelBitpay\Events\BitpayWebhookReceived;
-use Vrajroham\LaravelBitpay\Http\Middlewares\VerifyWebhookSignature;
+use Vrajroham\LaravelBitpay\Http\Middleware\VerifyWebhookSignature;
 
 class WebhookController extends Controller
 {

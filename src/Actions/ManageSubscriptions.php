@@ -84,7 +84,7 @@ trait ManageSubscriptions
      *
      * @param $status string|null The status to filter the subscriptions.
      *
-     * @return array A list of BitPay Subscription objects.
+     * @return Subscription[] A list of BitPay Subscription objects.
      * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
      */
     public static function getSubscriptions(string $status = null): array

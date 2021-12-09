@@ -11,6 +11,6 @@ class LaravelBitpayCurrencyTest extends TestCase
     /** @test */
     public function isInstanceOfCurrency()
     {
-        $this->assertEquals(LaravelBitpay::Currency() instanceof Currency, true);
+        $this->assertEquals(true, LaravelBitpay::Currency() instanceof Currency);
     }
 }

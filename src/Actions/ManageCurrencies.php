@@ -2,6 +2,7 @@
 
 namespace Vrajroham\LaravelBitpay\Actions;
 
+use BitPaySDK\Exceptions\BitPayException;
 use BitPaySDK\Model\Currency;
 
 
@@ -28,7 +29,7 @@ trait ManageCurrencies
      *
      * @link https://bitpay.com/api/#rest-api-resources-currencies-retrieve-the-supported-currencies
      * @return array     A list of supported BitPay Currency objects.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function getCurrencies(): array
     {

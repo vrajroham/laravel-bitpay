@@ -2,34 +2,41 @@
 
 namespace Vrajroham\LaravelBitpay\Actions;
 
+use BitPaySDK\Exceptions\BitPayException;
 use BitPaySDK\Model\Bill\Bill;
 use BitPaySDK\Model\Bill\Item;
 
 
+/**
+ * Bills are payment requests addressed to specific buyers.
+ * Bill line items have fixed prices, typically denominated in fiat currency.
+ *
+ * @link https://bitpay.com/api/#rest-api-resources-bills-resource
+ */
 trait ManageBills
 {
     /**
-     * Bills are payment requests addressed to specific buyers.
-     * Bill line items have fixed prices, typically denominated in fiat currency.
+     * Get BitPay Bill instance.
      *
-     * @link https://bitpay.com/api/#rest-api-resources-bills-resource
+     * @param string|null $number   A bill number for tracking purposes.
+     * @param string|null $currency The three digit currency code used to compute the bill's crypto amount.
+     * @param string|null $email    The email address of the receiver for this bill.
+     * @param Item[]|null $items    The list of BillItems to add to this bill.
+     *
      * @return Bill
      */
-    public static function Bill(): Bill
+    public static function Bill(
+        string $number = null,
+        string $currency = null,
+        string $email = null,
+        array  $items = null): Bill
     {
-        return new Bill();
+        return new Bill($number, $currency, $email, $items);
     }
 
     /**
-     * @return Item  A BitPay Bill Item
-     * @deprecated Use <code>LaravelBitpay::BillItem()</code> instead.
-     */
-    public static function Item(): Item
-    {
-        return new Item();
-    }
-
-    /**
+     * Get BitPay Bill Item instance.
+     *
      * @return Item  A BitPay Bill Item
      */
     public static function BillItem(): Item
@@ -45,7 +52,7 @@ trait ManageBills
      * @param $bill Bill A Bill object with request parameters defined.
      *
      * @return Bill A BitPay generated Bill object.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function createBill(Bill $bill): Bill
     {
@@ -60,7 +67,7 @@ trait ManageBills
      * @param $billId      string The id of the bill to retrieve.
      *
      * @return Bill A BitPay Bill object.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function getBill(string $billId): Bill
     {
@@ -74,8 +81,8 @@ trait ManageBills
      *
      * @param $status string|null The status to filter the bills.
      *
-     * @return array A list of BitPay Bill objects.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @return Bill[] A list of BitPay Bill objects.
+     * @throws BitPayException BitPayException class
      */
     public static function getBills(string $status = null): array
     {
@@ -91,7 +98,7 @@ trait ManageBills
      * @param $billId string The ID of the Bill to update.
      *
      * @return Bill An updated Bill object.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function updateBill(Bill $bill, string $billId): Bill
     {
@@ -106,11 +113,11 @@ trait ManageBills
      * @param $billId      string The id of the requested bill.
      * @param $billToken   string The token of the requested bill.
      *
-     * @return string A response status returned from the API.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @return bool True if the bill has been delivered, false otherwise.
+     * @throws BitPayException BitPayException class
      */
-    public static function deliverBill(string $billId, string $billToken): string
+    public static function deliverBill(string $billId, string $billToken): bool
     {
-        return (new self())->client->deliverBill($billId, $billToken);
+        return strtolower((new self())->client->deliverBill($billId, $billToken)) === "success";
     }
 }
