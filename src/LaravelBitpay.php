@@ -2,6 +2,7 @@
 
 namespace Vrajroham\LaravelBitpay;
 
+use BitPaySDK\Exceptions\BitPayException;
 use Vrajroham\LaravelBitpay\Actions\ManageBills;
 use Vrajroham\LaravelBitpay\Actions\ManageCurrencies;
 use Vrajroham\LaravelBitpay\Actions\ManageExchangeRates;
@@ -30,4 +31,16 @@ class LaravelBitpay
 
     protected $client;
     private   $config;
+
+
+    /**
+     * Setup client while creating the instance.
+     *
+     * @throws Exceptions\InvalidConfigurationException
+     * @throws BitPayException
+     */
+    public function __construct()
+    {
+        $this->setupClient();
+    }
 }
