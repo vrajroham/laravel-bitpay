@@ -35,3 +35,14 @@ following: https://github.com/vrajroham/laravel-bitpay#generate-key-pair-and-api
 
 Webhooks are now an optional feature. Your event listener should work the same, but to configure your webhook URL
 (notificationURL) please refer here: https://github.com/vrajroham/laravel-bitpay#configure-webhooks-optional.
+
+### Constants
+
++ Removed:
+  - `BitPayConstants::BILL_STATUS_*` in favor of core `BillStatus::*`
+  - `BitPayConstants::SUBSCRIPTION_STATUS_*` in favor of core `SubscriptionStatus::*`
++ Added:
+  - `BitPayConstants::INVOICE_EXCEPTION_*`
+  - `BitPayConstants::INVOICE_WEBHOOK_CODES`
+  - `BitPayConstants::RECIPIENT_WEBHOOK_CODES`
+  - `BitPayConstants::PAYOUT_WEBHOOK_CODES`
