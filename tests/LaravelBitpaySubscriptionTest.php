@@ -15,22 +15,22 @@ class LaravelBitpaySubscriptionTest extends TestCase
     /** @test */
     public function isInstanceOfSubscription()
     {
-        $this->assertEquals(LaravelBitpay::Subscription() instanceof Subscription, true);
+        $this->assertEquals(true, LaravelBitpay::Subscription() instanceof Subscription);
     }
 
     /** @test */
     public function isInstanceOfSubscriptionItem()
     {
-        $this->assertEquals(LaravelBitpay::SubscriptionItem() instanceof SubscriptionItem, true);
+        $this->assertEquals(true, LaravelBitpay::SubscriptionItem() instanceof SubscriptionItem);
     }
 
     /** @test */
     public function isInstanceOfBillData()
     {
-        $this->assertEquals(LaravelBitpay::BillData(
+        $this->assertEquals(true, LaravelBitpay::BillData(
                 Currency::USD,
                 'test@example.com',
                 '2021-12-01T09:00:00Z',
-                []) instanceof BillData, true);
+                []) instanceof BillData);
     }
 }

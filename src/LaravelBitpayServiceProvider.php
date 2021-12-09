@@ -4,7 +4,9 @@ namespace Vrajroham\LaravelBitpay;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Vrajroham\LaravelBitpay\Commands\CreateKeypair;
+use Vrajroham\LaravelBitpay\Console\CreateKeypairCommand;
+use Vrajroham\LaravelBitpay\Http\Controllers\WebhookController;
+
 
 class LaravelBitpayServiceProvider extends ServiceProvider
 {
@@ -15,11 +17,11 @@ class LaravelBitpayServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/laravel-bitpay.php' => config_path('laravel-bitpay.php'),
+                __DIR__ . '/../config/laravel-bitpay.php' => config_path('laravel-bitpay.php'),
             ], 'config');
         }
 
-        $this->defineRoutes();
+        $this->registerRoutes();
     }
 
     /**
@@ -27,22 +29,19 @@ class LaravelBitpayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/laravel-bitpay.php', 'laravel-bitpay');
-        $this->app->bind('command.laravel-bitpay:createkeypair', CreateKeypair::class);
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-bitpay.php', 'laravel-bitpay');
+        $this->app->bind('command.laravel-bitpay:createkeypair', CreateKeypairCommand::class);
         $this->commands([
             'command.laravel-bitpay:createkeypair',
         ]);
     }
 
-    protected function defineRoutes()
+    protected function registerRoutes()
     {
-        if (!$this->app->routesAreCached()) {
-            Route::group(
-                ['namespace' => 'Vrajroham\LaravelBitpay\Http\Controllers'],
-                function ($router) {
-                    require __DIR__.'/Http/Routes/web.php';
-                }
-            );
-        }
+        Route::macro('bitPayWebhook',
+            function (string $uri = 'laravel-bitpay/webhook') {
+                Route::post($uri, [WebhookController::class, 'handleWebhook'])
+                    ->name('laravel-bitpay.webhook.capture');
+            });
     }
 }

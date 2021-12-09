@@ -2,9 +2,12 @@
 
 namespace Vrajroham\LaravelBitpay\Actions;
 
+use BitPaySDK\Exceptions\BitPayException;
+use BitPaySDK\Exceptions\RefundCancellationException;
 use BitPaySDK\Model\Invoice\Buyer;
 use BitPaySDK\Model\Invoice\Invoice;
 use BitPaySDK\Model\Invoice\Refund;
+use Vrajroham\LaravelBitpay\Constants\WebhookAutoPopulate;
 
 
 trait ManageInvoices
@@ -13,11 +16,15 @@ trait ManageInvoices
      * Get BitPay Invoice instance.
      *
      * @link https://bitpay.com/api/#rest-api-resources-invoices-resource
+     *
+     * @param float|null  $price    float The amount for which the invoice will be created.
+     * @param string|null $currency string three digit currency code used to compute the invoice bitcoin amount.
+     *
      * @return Invoice
      */
-    public static function Invoice(): Invoice
+    public static function Invoice(float $price = null, string $currency = null): Invoice
     {
-        return new Invoice();
+        return new Invoice($price, $currency);
     }
 
     /**
@@ -36,15 +43,22 @@ trait ManageInvoices
      * @param $invoice Invoice An Invoice object with request parameters defined.
      *
      * @return Invoice $invoice A BitPay generated Invoice object.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function createInvoice(Invoice $invoice): Invoice
     {
-        if ('' == $invoice->getNotificationURL()) {
-            $invoice->setNotificationURL(route('laravel-bitpay.webhook.capture'));
+        $thisInstance = new self();
+
+        try {
+            if (empty($invoice->getNotificationURL()) &&
+                in_array(WebhookAutoPopulate::For_Invoices, $thisInstance->config['auto_populate_webhook'])) {
+                $invoice->setNotificationURL(route('laravel-bitpay.webhook.capture'));
+            }
+        } catch (\Throwable $exception) {
+            // Misconfiguration or route macro not in use
         }
 
-        return (new self())->client->createInvoice($invoice);
+        return $thisInstance->client->createInvoice($invoice);
     }
 
     /**
@@ -55,7 +69,7 @@ trait ManageInvoices
      * @param $invoiceId string The id of the invoice to retrieve.
      *
      * @return Invoice A BitPay Invoice object.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function getInvoice(string $invoiceId): Invoice
     {
@@ -74,8 +88,8 @@ trait ManageInvoices
      * @param $limit     int|null Maximum results that the query will return (useful for paging results).
      * @param $offset    int|null Number of results to offset (ex. skip 10 will give you results starting with the 11th result).
      *
-     * @return array     A list of BitPay Invoice objects.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @return Invoice[] A list of BitPay Invoice objects.
+     * @throws BitPayException BitPayException class
      */
     public static function getInvoices(
         string $dateStart,
@@ -113,7 +127,7 @@ trait ManageInvoices
      *                          calculation is performed.
      *
      * @return bool True if the refund was successfully created, false otherwise.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function createRefund(
         Invoice $invoice,
@@ -131,8 +145,8 @@ trait ManageInvoices
      *
      * @param $invoice  Invoice The BitPay invoice having the associated refunds.
      *
-     * @return array An array of BitPay refund object with the associated Refund object updated.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @return Refund[] An array of BitPay refund object with the associated Refund object updated.
+     * @throws BitPayException BitPayException class
      */
     public static function getRefunds(Invoice $invoice): array
     {
@@ -148,7 +162,7 @@ trait ManageInvoices
      * @param $refundId string The refund id for the refund to be updated with new status.
      *
      * @return Refund A BitPay refund object with the associated Refund object updated.
-     * @throws \BitPaySDK\Exceptions\BitPayException BitPayException class
+     * @throws BitPayException BitPayException class
      */
     public static function getRefund(Invoice $invoice, string $refundId): Refund
     {
@@ -165,10 +179,27 @@ trait ManageInvoices
      *                   Must have been obtained using the merchant facade.
      *
      * @return bool True if the refund was successfully canceled, false otherwise.
-     * @throws \BitPaySDK\Exceptions\RefundCancellationException RefundCancellationException class
+     * @throws RefundCancellationException RefundCancellationException class
      */
     public static function cancelRefund(string $invoiceId, Refund $refund): bool
     {
         return (new self())->client->cancelRefund($invoiceId, $refund);
     }
+
+    // TODO: Awaiting upstream merge: https://github.com/bitpay/php-bitpay-client-v2/pull/69
+//    /**
+//     * Request the last BitPay Invoice webhook to be resent.
+//     *
+//     * @link https://bitpay.com/api/#rest-api-resources-invoices-request-a-webhook-to-be-resent
+//     *
+//     * @param string $invoiceId The id of the invoice for which you want the last webhook to be resent.
+//     * @param string $invoiceToken The resource token for the `invoiceId` you want the webhook to be resent.
+//     *
+//     * @return bool True if the webhook has been resent for the current invoice status, false otherwise.
+//     * @throws  \BitPaySDK\Exceptions\BitPayException BitPayException class
+//     */
+//    public static function requestInvoiceWebhook(string $invoiceId, string $invoiceToken): bool
+//    {
+//        return (new self())->client->requestInvoiceWebhook($invoiceId, $invoiceToken);
+//    }
 }

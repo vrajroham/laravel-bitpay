@@ -8,7 +8,7 @@ class InvalidConfigurationException extends Exception
 {
     public static function invalidNetworkName(): self
     {
-        return new static('Invalid network option provided in config. Should be livenet ot testnet only.');
+        return new static('Invalid network option provided in config. Should be livenet or testnet only.');
     }
 
     public static function invalidStorageClass()
@@ -21,18 +21,13 @@ class InvalidConfigurationException extends Exception
         return new static('Password missing in config. Password is required to encrypt and decrypt keys on the filesystem.');
     }
 
-    public static function invalidOrEmptyPairingCode()
+    public static function emptyMerchantToken()
     {
-        return new static('Invalid or empty pairing code. To create new visit merchant dashboard on bitpay.');
+        return new static('BitPay merchant token is empty. Set BITPAY_MERCHANT_TOKEN in your .env file.');
     }
 
-    public static function invalidOrEmptyPairingCodeLabel()
+    public static function emptyPayoutToken()
     {
-        return new static('Invalid or empty pairing code label.');
-    }
-
-    public static function emptyToken()
-    {
-        return new static('BitPay token is empty. Set token in `bitpay-config` file.');
+        return new static('BitPay payout token is empty. Set BITPAY_PAYOUT_TOKEN in your .env file.');
     }
 }

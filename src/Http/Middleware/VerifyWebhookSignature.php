@@ -1,6 +1,6 @@
 <?php
 
-namespace Vrajroham\LaravelBitpay\Http\Middlewares;
+namespace Vrajroham\LaravelBitpay\Http\Middleware;
 
 use Closure;
 use Exception;
