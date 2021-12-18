@@ -486,9 +486,9 @@ $updatedBill = LaravelBitpay::updateBill($billData, $billData->getId());
 ```php
 $bill = LaravelBitpay::getBill('bill1234-EFGH');
 
-$billDelivery = LaravelBitpay::deliverBill($bill->getId(), $bill->getToken());
+$billDelivered = LaravelBitpay::deliverBill($bill->getId(), $bill->getToken());
 
-if ($billDelivery === 'Success') {
+if ($billDelivered) {
     // Bill delivered successfully. Do something about that... or not.
 }
 ```
@@ -754,7 +754,7 @@ $payout = LaravelBitpay::createPayout($payoutData);
 $payoutId = $payout->getId();
 $payoutToken = $payout->getToken();
 
-// ... store Recipient ID and Token somewhere persistent
+// ... store Payout ID and Token somewhere persistent
 ```
 
 > :information_source: It is highly recommended you store the Payout ID and Token on your internal model(s). The token
