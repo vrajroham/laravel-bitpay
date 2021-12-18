@@ -3,6 +3,10 @@
 All notable changes to `vrajroham/laravel-bitpay` will be documented in this file
 
 ---
+#### v5.0.1 - 2021-12-18
+
+* Make newLine() calls compatible with Laravel versions below 8 by @Ririshi in https://github.com/vrajroham/laravel-bitpay/pull/41
+
 #### v5.0.0 - 2021-12-09
 
 * v5 Upgrade by @alexstewartja in https://github.com/vrajroham/laravel-bitpay/pull/38:
