@@ -79,14 +79,14 @@ class CreateKeypairCommand extends Command
 
         $this->info('<fg=magenta>' . str_repeat('#', $borderWidth) . ' '
             . $sectionTitle . ' ' . str_repeat('#', $borderWidth) . '</>');
-        $this->newLine();
+        $this->output->newLine();
     }
 
     private function sectionFooter()
     {
-        $this->newLine();
+        $this->output->newLine();
         $this->info('<fg=magenta>' . str_repeat('#', self::HEADER_FOOTER_WIDTH) . '</>');
-        $this->newLine(2);
+        $this->output->newLine(2);
     }
 
     /**
@@ -115,7 +115,7 @@ class CreateKeypairCommand extends Command
             $this->bar->setEmptyBarCharacter(' ');
             $this->bar->minSecondsBetweenRedraws(0);
 
-            $this->newLine();
+            $this->output->newLine();
 
             $this->createAndPersistKeypair();
 
@@ -130,7 +130,7 @@ class CreateKeypairCommand extends Command
                 $this->laravel['config']['laravel-bitpay.' .
                 ($facade === 'merchant' ? 'merchant_' : ($facade === 'payout' ? 'payout_' : '')) . 'token'] = $this->token;
 
-                $this->newLine();
+                $this->output->newLine();
 
                 $this->line('<options=bold,underscore>Token Label</> : <options=bold;fg=bright-cyan>' . $this->tokenLabel . '</>');
 
@@ -140,7 +140,7 @@ class CreateKeypairCommand extends Command
                 $this->line('<options=bold,underscore>Pairing Code</>: <options=bold;fg=bright-cyan>' . $this->pairingCode
                     . '</> (Expires: <options=bold;fg=bright-red>' . $this->pairingExpiration . '</>)');
 
-                $this->newLine();
+                $this->output->newLine();
 
                 $this->line('Approve your API Token by visiting: <fg=blue;href=' . $this->approveLink . '>' . $this->approveLink . '</>');
 
