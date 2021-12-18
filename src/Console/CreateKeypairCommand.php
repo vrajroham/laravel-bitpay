@@ -56,6 +56,20 @@ class CreateKeypairCommand extends Command
     }
 
     /**
+     * @inheritDoc
+     * Polyfill which enables compatibility with Laravel <8.x
+     *
+     * @param int $count
+     *
+     * @return void
+     * @since 5.0.1
+     */
+    public function newLine($count = 1)
+    {
+        $this->output->newLine($count);
+    }
+
+    /**
      * Advance progress bar by $steps, and write 'info' level $message to console, optionally skipping by $skipSteps.
      *
      * @param string $message
