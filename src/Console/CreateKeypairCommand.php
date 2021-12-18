@@ -56,6 +56,20 @@ class CreateKeypairCommand extends Command
     }
 
     /**
+     * @inheritDoc
+     * Polyfill which enables compatibility with Laravel <8.x
+     *
+     * @param int $count
+     *
+     * @return void
+     * @since 5.0.1
+     */
+    public function newLine($count = 1)
+    {
+        $this->output->newLine($count);
+    }
+
+    /**
      * Advance progress bar by $steps, and write 'info' level $message to console, optionally skipping by $skipSteps.
      *
      * @param string $message
@@ -79,14 +93,14 @@ class CreateKeypairCommand extends Command
 
         $this->info('<fg=magenta>' . str_repeat('#', $borderWidth) . ' '
             . $sectionTitle . ' ' . str_repeat('#', $borderWidth) . '</>');
-        $this->output->newLine();
+        $this->newLine();
     }
 
     private function sectionFooter()
     {
-        $this->output->newLine();
+        $this->newLine();
         $this->info('<fg=magenta>' . str_repeat('#', self::HEADER_FOOTER_WIDTH) . '</>');
-        $this->output->newLine(2);
+        $this->newLine(2);
     }
 
     /**
@@ -115,7 +129,7 @@ class CreateKeypairCommand extends Command
             $this->bar->setEmptyBarCharacter(' ');
             $this->bar->minSecondsBetweenRedraws(0);
 
-            $this->output->newLine();
+            $this->newLine();
 
             $this->createAndPersistKeypair();
 
@@ -130,7 +144,7 @@ class CreateKeypairCommand extends Command
                 $this->laravel['config']['laravel-bitpay.' .
                 ($facade === 'merchant' ? 'merchant_' : ($facade === 'payout' ? 'payout_' : '')) . 'token'] = $this->token;
 
-                $this->output->newLine();
+                $this->newLine();
 
                 $this->line('<options=bold,underscore>Token Label</> : <options=bold;fg=bright-cyan>' . $this->tokenLabel . '</>');
 
@@ -140,7 +154,7 @@ class CreateKeypairCommand extends Command
                 $this->line('<options=bold,underscore>Pairing Code</>: <options=bold;fg=bright-cyan>' . $this->pairingCode
                     . '</> (Expires: <options=bold;fg=bright-red>' . $this->pairingExpiration . '</>)');
 
-                $this->output->newLine();
+                $this->newLine();
 
                 $this->line('Approve your API Token by visiting: <fg=blue;href=' . $this->approveLink . '>' . $this->approveLink . '</>');
 
