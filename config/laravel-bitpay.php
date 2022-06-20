@@ -1,11 +1,13 @@
 <?php
 
+$pkPath = 'app' . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'bitpay'  . DIRECTORY_SEPARATOR . 'laravel-bitpay.pk';
+
 return [
     /*
      * This is the full path and name for the private key.
-     * The default value is /tmp/laravel-bitpay.pk
+     * The default value is `storage/app/private/bitpay/laravel-bitpay.pk`
      */
-    'private_key'             => env('BITPAY_PRIVATE_KEY_PATH', '/tmp/laravel-bitpay.pk'),
+    'private_key'             => env('BITPAY_PRIVATE_KEY_PATH') ?: storage_path($pkPath),
 
     /*
      * Specifies using the Live Bitcoin network or
@@ -46,7 +48,7 @@ return [
      *
      * Default: null
      */
-    'merchant_token'                   => env('BITPAY_MERCHANT_TOKEN'),
+    'merchant_token'          => env('BITPAY_MERCHANT_TOKEN'),
 
     /*
      * BitPay Payout Token
@@ -66,7 +68,7 @@ return [
      *
      * Uncomment an entry to enable its auto-population.
      */
-    'auto_populate_webhook' => [
+    'auto_populate_webhook'   => [
 //        \Vrajroham\LaravelBitpay\Constants\WebhookAutoPopulate::For_Invoices,
 //        \Vrajroham\LaravelBitpay\Constants\WebhookAutoPopulate::For_Recipients,
 //        \Vrajroham\LaravelBitpay\Constants\WebhookAutoPopulate::For_Payouts,
