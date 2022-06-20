@@ -14,6 +14,6 @@ class LaravelBitpayFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laravel-bitpay';
+        return LaravelBitpay::class;
     }
 }

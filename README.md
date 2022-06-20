@@ -10,7 +10,7 @@
 LaravelBitPay enables you and your business to transact in Bitcoin, Bitcoin Cash and 10+ other BitPay-supported
 cryptocurrencies within your Laravel application.
 
-> Requires PHP ^7.3
+> Requires PHP 7.3+
 
 ## :warning: Migration From v4 :warning:
 
@@ -122,7 +122,7 @@ Add the following keys to your `.env` file and update the values to match your
 preferences ([read more about configuration](https://support.bitpay.com/hc/en-us/articles/115003001063-How-do-I-configure-the-PHP-BitPay-Client-Library-)):
 
 ```dotenv
-BITPAY_PRIVATE_KEY_PATH=/tmp/laravel-bitpay.pk
+BITPAY_PRIVATE_KEY_PATH=
 BITPAY_NETWORK=testnet
 BITPAY_KEY_STORAGE_PASSWORD=RandomPasswordForEncryption
 BITPAY_ENABLE_MERCHANT=true
@@ -506,7 +506,7 @@ AM, respectively:
 ```php
 // Initialize Subscription
 $subscriptionData = LaravelBitpay::Subscription();
-$subscriptionData->setSchedule(LaravelBitpay::SUBSCRIPTION_SCHEDULE_MONTHLY);
+$subscriptionData->setSchedule(BitPayConstants::SUBSCRIPTION_SCHEDULE_MONTHLY);
 
 // Optional recurring bill data
 $billData = [
@@ -921,7 +921,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email vaibhavraj@vrajroham.me instead of using the issue tracker.
+If you discover any security related issues, please email vaibhavraj@vrajroham.me or iamalexstewart@gmail.com instead of using the issue tracker.
 
 ## Credits
 
