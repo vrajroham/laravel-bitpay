@@ -345,6 +345,13 @@ $endDate = date('Y-m-d');
 $invoices = LaravelBitpay::getInvoices($startDate, $endDate);
 ```
 
+#### Request an Invoice webhook to be resent
+
+```php
+// True if the webhook has been resent for the current invoice status, false otherwise.
+$webhookResent = LaravelBitpay::requestInvoiceWebhook('invoiceId_sGsdVsgheF');
+```
+
 #### Refund an invoice
 
 The item Jane purchased was dead on arrival. Give back the lady her crypto:
