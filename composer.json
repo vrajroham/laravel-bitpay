@@ -23,9 +23,9 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.4 || ^8.0 || ^8.1",
         "ext-json": "*",
-        "bitpay/sdk": "~6.0.2"
+        "bitpay/sdk": "~7.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": ">=9.5"

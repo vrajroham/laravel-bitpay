@@ -10,6 +10,7 @@ use Vrajroham\LaravelBitpay\Actions\ManageInvoices;
 use Vrajroham\LaravelBitpay\Actions\ManageLedgers;
 use Vrajroham\LaravelBitpay\Actions\ManagePayouts;
 use Vrajroham\LaravelBitpay\Actions\ManageRecipients;
+use Vrajroham\LaravelBitpay\Actions\ManageRefunds;
 use Vrajroham\LaravelBitpay\Actions\ManageSettlements;
 use Vrajroham\LaravelBitpay\Actions\ManageSubscriptions;
 use Vrajroham\LaravelBitpay\Traits\MakesHttpRequests;
@@ -25,6 +26,7 @@ class LaravelBitpay
     use ManageLedgers;
     use ManagePayouts;
     use ManageRecipients;
+    use ManageRefunds;
     use ManageSettlements;
     use ManageSubscriptions;
 
