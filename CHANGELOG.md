@@ -4,9 +4,10 @@ All notable changes to `vrajroham/laravel-bitpay` will be documented in this fil
 
 ---
 
-#### v5.4.0 - 2022-12-18
+#### v6.0.0 - 2022-12-18
 
 * Updated BitPay client dependency to v7.1.0
+* Bumped minimum PHP version to 7.4
 * Implemented the invoice webhook/notification resend action
 * Isolated implementation of the `Refunds` resource
 

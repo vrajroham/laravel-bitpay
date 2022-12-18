@@ -10,7 +10,7 @@
 LaravelBitPay enables you and your business to transact in Bitcoin, Bitcoin Cash and 10+ other BitPay-supported
 cryptocurrencies within your Laravel application.
 
-> Requires PHP 7.3+
+> Requires PHP 7.4+
 
 ## :warning: Migration From v4 :warning:
 
