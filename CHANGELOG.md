@@ -3,6 +3,17 @@
 All notable changes to `vrajroham/laravel-bitpay` will be documented in this file
 
 ---
+
+#### v5.4.0 - 2022-12-18
+
+* Updated BitPay client dependency to v7.1.0
+* Implemented the invoice webhook/notification resend action
+* Isolated implementation of the `Refunds` resource
+
+#### v5.3.0 - 2022-06-20
+
+* Fixed issues, updated deps & corrected typos by @alexstewartja in https://github.com/vrajroham/laravel-bitpay/pull/42
+
 #### v5.0.1 - 2021-12-18
 
 * Make newLine() calls compatible with Laravel versions below 8 by @Ririshi in https://github.com/vrajroham/laravel-bitpay/pull/41
