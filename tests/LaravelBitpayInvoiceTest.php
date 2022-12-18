@@ -21,10 +21,4 @@ class LaravelBitpayInvoiceTest extends TestCase
     {
         $this->assertEquals(true, LaravelBitpay::Buyer() instanceof Buyer);
     }
-
-    /** @test */
-    public function isInstanceOfRefund()
-    {
-        $this->assertEquals(true, LaravelBitpay::Refund() instanceof Refund);
-    }
 }
