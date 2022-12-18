@@ -19,6 +19,7 @@ If upgrading from v4, please follow [MIGRATION.md](./MIGRATION.md)
 ## Supported Resources
 
 - :white_check_mark: [Invoices](https://bitpay.com/api/#rest-api-resources-invoices)
+- :white_check_mark: [Refunds](https://bitpay.com/api/#rest-api-resources-refunds)
 - :white_check_mark: [Bills](https://bitpay.com/api/#rest-api-resources-bills)
 - :white_check_mark: [Subscriptions](https://bitpay.com/api/#rest-api-resources-subscriptions)
 - :white_check_mark: [Settlements](https://bitpay.com/api/#rest-api-resources-settlements)
@@ -43,6 +44,7 @@ If upgrading from v4, please follow [MIGRATION.md](./MIGRATION.md)
         + [Create an invoice](#create-an-invoice)
         + [Retrieve an existing invoice](#retrieve-an-existing-invoice)
         + [Retrieve a list of existing invoices](#retrieve-a-list-of-existing-invoices)
+    + [Refunds](#refunds)
         + [Refund an invoice](#refund-an-invoice)
         + [Retrieve a refund request](#retrieve-a-refund-request)
         + [Retrieve all refund requests on an invoice](#retrieve-all-refund-requests-on-an-invoice)
@@ -141,8 +143,10 @@ php artisan laravel-bitpay:createkeypair
 
 <center><img src="https://i.ibb.co/JvP3bQb/create-key-pair-command.png" title="Create Key-Pair Command" alt="Create Key-Pair Command"/></center>
 
-> :information_source: By default, the command will use the (valid) existing private key located at `BITPAY_PRIVATE_KEY_PATH`.
-> You may specify the `--fresh` or `-f` option to explicitly generate a fresh private key, from which tokens are derived.
+> :information_source: By default, the command will use the (valid) existing private key located
+> at `BITPAY_PRIVATE_KEY_PATH`.
+> You may specify the `--fresh` or `-f` option to explicitly generate a fresh private key, from which tokens are
+> derived.
 
 After successful API Token generation, you will need to approve it by visiting the provided link.
 
@@ -173,7 +177,8 @@ Route::bitPayWebhook(); // https://example.com/laravel-bitpay/webhook
 Route::bitPayWebhook('receive/webhooks/here'); // https://example.com/receive/webhooks/here
 ```
 
-> :information_source: To retrieve your newly created webhook route anywhere in your application, use: `route('laravel-bitpay.webhook.capture')`
+> :information_source: To retrieve your newly created webhook route anywhere in your application,
+> use: `route('laravel-bitpay.webhook.capture')`
 
 LaravelBitPay also offers the convenience of auto-populating your configured webhook url on applicable resources.
 Specifically when:
@@ -351,6 +356,12 @@ $invoices = LaravelBitpay::getInvoices($startDate, $endDate);
 // True if the webhook has been resent for the current invoice status, false otherwise.
 $webhookResent = LaravelBitpay::requestInvoiceWebhook('invoiceId_sGsdVsgheF');
 ```
+
+### Refunds
+
+Refund requests are full or partial refunds associated to an invoice. Fully paid invoices can be refunded via the
+merchant's authorization to issue a refund, while underpaid and overpaid invoices are automatically executed by BitPay
+to issue the underpayment or overpayment amount to the customer.
 
 #### Refund an invoice
 
@@ -928,7 +939,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email vaibhavraj@vrajroham.me or iamalexstewart@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email vaibhavraj@vrajroham.me or iamalexstewart@gmail.com instead of
+using the issue tracker.
 
 ## Credits
 
